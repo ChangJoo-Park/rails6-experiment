@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   # On when production ready
   # has_paper_trail on: [:update :destroy]
+  has_many :posts
 end
