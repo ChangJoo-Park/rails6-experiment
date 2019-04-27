@@ -3,12 +3,10 @@ class CreatePosts < ActiveRecord::Migration[6.0]
     create_table :posts do |t|
       t.string :title
       t.text :content
-      t.boolean :published
+      t.boolean :published, default: false
       t.datetime :published_at
-      t.string :slug
 
       t.timestamps
     end
-    add_index :posts, :slug, unique: true
   end
 end

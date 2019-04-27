@@ -17,7 +17,6 @@ class PostsTest < ApplicationSystemTestCase
     fill_in "Content", with: @post.content
     check "Published" if @post.published
     fill_in "Published at", with: @post.published_at
-    fill_in "Slug", with: @post.slug
     fill_in "Title", with: @post.title
     click_on "Create Post"
 
@@ -32,7 +31,6 @@ class PostsTest < ApplicationSystemTestCase
     fill_in "Content", with: @post.content
     check "Published" if @post.published
     fill_in "Published at", with: @post.published_at
-    fill_in "Slug", with: @post.slug
     fill_in "Title", with: @post.title
     click_on "Update Post"
 
