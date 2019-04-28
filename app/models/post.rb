@@ -1,13 +1,15 @@
 class Post < ApplicationRecord
+  before_save :set_published_at
+
   validates :title, presence: true
+
   acts_as_favoritable
 
   has_rich_text :content
   belongs_to :user
   has_many :comments
 
-  before_save :set_published_at
-
+  # https://rubyplus.com/articles/4241-Tagging-from-Scratch-in-Rails-5
 
   def self.all_by_user(user)
     # TODO: raise error if user not found
