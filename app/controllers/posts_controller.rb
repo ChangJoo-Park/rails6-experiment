@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post_with_comments, only: [:show]
+  before_action :set_post, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, :except => [:index, :show]
 
   # GET /posts
@@ -65,6 +66,10 @@ class PostsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def set_post_with_comments
+      @post = Post.includes(comments: [:user]).find(params[:id])
+    end
+
     def set_post
       @post = Post.find(params[:id])
     end

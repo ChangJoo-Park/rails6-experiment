@@ -6,6 +6,7 @@ class User < ApplicationRecord
   # On when production ready
   # has_paper_trail on: [:update :destroy]
   has_many :posts
+  has_many :comments
 
   private
     def self.find_by_id_with_posts(user_id)

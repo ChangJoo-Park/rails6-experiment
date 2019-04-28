@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if notice.present? %>
+<p id="notice">
+  <h2 class="alert alert-info"><%= notice %></h2>
+</p>
+<% end %>
 
 <p>
   <strong>Title:</strong>
@@ -22,3 +26,24 @@
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
+
+<div>
+  <strong>Comment</strong>
+
+  <h2>Add a comment:</h2>
+  <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+    <p>
+      <%= form.label :body %><br>
+      <%= form.text_area :body %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+
+  <% @post.comments.each do |comment| %>
+    <% if comment.id.present? %>
+      <div><%= comment.body %> - <%= comment.user.email %></div>
+    <% end %>
+  <% end %>
+</div>
