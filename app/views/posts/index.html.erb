@@ -19,10 +19,10 @@
       <tbody>
         <% @posts.each do |post| %>
           <tr>
-            <td><%= post.title %></td>
+            <td><%= link_to post.title, post %></td>
             <td><%= post.published %></td>
             <td><%= post.published_at %></td>
-            <td><%= post.user.email %></td>
+            <td><%= link_to post.user.email, user_path(post.user) %></td>
             <td><%= link_to 'Show', post %></td>
             <td><%= link_to 'Edit', edit_post_path(post) %></td>
             <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
