@@ -9,7 +9,6 @@
       <thead>
         <tr>
           <th>Title</th>
-          <th>Content</th>
           <th>Published</th>
           <th>Published at</th>
           <th>User</th>
@@ -21,7 +20,6 @@
         <% @posts.each do |post| %>
           <tr>
             <td><%= post.title %></td>
-            <td><%= post.content %></td>
             <td><%= post.published %></td>
             <td><%= post.published_at %></td>
             <td><%= post.user.email %></td>
