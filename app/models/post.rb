@@ -12,13 +12,13 @@ class Post < ApplicationRecord
 
   def self.all_by_user(user)
     # TODO: raise error if user not found
-    self.where(user: user)
+    self.where(user: user).except(:content)
   end
 
   def self.published_by_user(user)
     # TODO: raise error if user not found
     puts "SELF.PUBLISHED_BY_USER"
-    self.where(user: user, published: true)
+    self.where(user: user, published: true).except(:content)
   end
 
   private
