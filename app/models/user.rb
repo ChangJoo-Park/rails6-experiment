@@ -7,5 +7,5 @@ class User < ApplicationRecord
   # has_paper_trail on: [:update :destroy]
   has_many :posts
   has_many :comments
-
+  acts_as_favoritor
 end
