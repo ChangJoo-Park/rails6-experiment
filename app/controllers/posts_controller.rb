@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.where({ published: true }).except(:content).includes(:user)
+    @posts = Post.where({ published: true }).except(:content).includes(:user).order(published_at: :asc)
   end
 
   # GET /posts/1
