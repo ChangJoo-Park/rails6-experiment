@@ -9,6 +9,18 @@ class Post < ApplicationRecord
 
   before_save :set_published_at
 
+
+  def self.all_by_user(user)
+    # TODO: raise error if user not found
+    self.where(user: user)
+  end
+
+  def self.published_by_user(user)
+    # TODO: raise error if user not found
+    puts "SELF.PUBLISHED_BY_USER"
+    self.where(user: user, published: true)
+  end
+
   private
     def set_published_at
       if self.published?
