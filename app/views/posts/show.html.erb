@@ -13,6 +13,12 @@
 </p>
 
 <p>
+  <strong>Tags: </strong>
+  <% @post.tag_list.split(',').each do |tag|  %>
+    <%= link_to tag.strip, tag_path(tag.strip) %>&nbsp;
+  <% end %>
+</p>
+<p>
   <strong>Published:</strong>
   <%= @post.published %>
 </p>
