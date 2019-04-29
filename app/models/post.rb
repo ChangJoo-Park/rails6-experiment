@@ -16,7 +16,12 @@ class Post < ApplicationRecord
   # https://rubyplus.com/articles/4241-Tagging-from-Scratch-in-Rails-5
 
   def self.feeds
-    self.where({ published: true }).except(:content).includes(:user).order(published_at: :asc).limit(10)
+    self
+      .where({ published: true })
+      .except(:content)
+      .includes([:tags, :user])
+      .order(published_at: :asc)
+      .limit(10)
   end
 
   def self.all_by_user(user)
@@ -26,11 +31,11 @@ class Post < ApplicationRecord
 
   def self.published_by_user(user)
     # TODO: raise error if user not found
-    self.includes([:tags, :taggings]).except(:content).where(user: user, published: true)
+    self.includes(:tags).except(:content).where(user: user, published: true)
   end
 
   def self.tagged_with(name)
-    Tag.find_by!(name: name).posts.includes(:user)
+    Tag.find_by!(name: name).posts.includes([:user, :tags])
   end
 
   def self.tag_counts
