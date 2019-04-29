@@ -1,53 +1,68 @@
 <% if notice.present? %>
   <div class="alert alert-warning"><%= notice %></div>
 <% end %>
+<div class="row">
+  <div class="post col-9">
+    <div class="post-details">
+      <div class="post-header">
+        <h1 class="post-header-title"><%= @post.title %></h1>
+        <div class="post-meta">
+          <div class="post-meta-author">
+            <%= adorable_avatar(@post.user.email, 30) %>
+            <%= link_to @post.user.email, user_path(@post.user) %>
+          </div>
+          Published at <%= @post.published_at %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+          <div>
+            <% @post.tag_list.split(',').each do |tag|  %>
+              <%= link_to "##{tag.strip}", tag_path(tag.strip) %>&nbsp;
+            <% end %>
+          </div>
+        </div>
+      </div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
+      <div class="post-content">
+        <%= @post.content %>
+      </div>
 
-<p>
-  <strong>Tags: </strong>
-  <% @post.tag_list.split(',').each do |tag|  %>
-    <%= link_to tag.strip, tag_path(tag.strip) %>&nbsp;
-  <% end %>
-</p>
-<p>
-  <strong>Published:</strong>
-  <%= @post.published %>
-</p>
+      <hr>
 
-<p>
-  <strong>Published at:</strong>
-  <%= @post.published_at %>
-</p>
+      <div class="author" style="margin-bottom: 1rem;">
+        <%= adorable_avatar(@post.user.email, 160) %>
+        <%= link_to @post.user.email, user_path(@post.user) %>
+      </div>
+    </div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+    <div class="post-comments">
+      <div class="post-comment-form">
+        <strong>Comment</strong>
+        <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+          <div class="form-group">
+            <%= form.text_area :body, class: "form-control", placeholder: "Add Your Oppinion." %>
+          </div>
+          <p class="text-right">
+            <%= form.submit '남기기', class: "btn btn-primary" %>
+          </p>
+        <% end %>
+      </div>
 
-<div>
-  <strong>Comment</strong>
-
-  <h2>Add a comment:</h2>
-  <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
-    <p>
-      <%= form.label :body %><br>
-      <%= form.text_area :body %>
-    </p>
-    <p>
-      <%= form.submit %>
-    </p>
-  <% end %>
-
-  <% @post.comments.each do |comment| %>
-    <% if comment.id.present? %>
-      <div><%= comment.body %> - <%= comment.user.email %></div>
-    <% end %>
-  <% end %>
+      <% @post.comments.each do |comment| %>
+        <% if comment.id.present? %>
+          <div class="comment">
+            <div class="comment-author">
+              <%= adorable_avatar(@post.user.email, 30) %>
+              <%= link_to comment.user.email, user_path(comment.user) %>
+              <%= comment.created_at %>
+            </div>
+            <div class="comment-body">
+              <%= comment.body %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-3">
+    <h1>Hello World</h1>
+  </div>
 </div>
