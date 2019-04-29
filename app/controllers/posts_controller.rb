@@ -6,7 +6,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    params[:tag] ? @posts = Post.tagged_with(params[:tag]) : @posts = Post.feeds
+    if params[:tag]
+      @posts = Post.tagged_with(params[:tag])
+      @title = "태그: #{params[:tag]}"
+    else
+      @posts = Post.feeds
+      @title = "Posts"
+    end
   end
 
   # GET /posts/1
