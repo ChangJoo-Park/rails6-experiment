@@ -26,12 +26,11 @@ class Post < ApplicationRecord
 
   def self.published_by_user(user)
     # TODO: raise error if user not found
-    puts "SELF.PUBLISHED_BY_USER"
     self.includes([:tags, :taggings]).except(:content).where(user: user, published: true)
   end
 
   def self.tagged_with(name)
-    Tag.find_by!(name: name).posts
+    Tag.find_by!(name: name).posts.includes(:user)
   end
 
   def self.tag_counts
@@ -48,12 +47,7 @@ class Post < ApplicationRecord
     end
   end
 
-  private
-    def set_published_at
-      if self.published?
-        self.published_at = DateTime.now
-      else
-        self.published_at = nil
-      end
-    end
+  def set_published_at
+    self.published ? self.published_at = DateTime.now : self.published_at = nil
+  end
 end
