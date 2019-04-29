@@ -20,7 +20,7 @@ class Post < ApplicationRecord
       .where({ published: true })
       .except(:content)
       .includes([:tags, :user])
-      .order(published_at: :asc)
+      .order(published_at: :desc)
       .limit(10)
   end
 
