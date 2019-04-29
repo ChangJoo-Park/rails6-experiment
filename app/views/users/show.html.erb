@@ -12,6 +12,9 @@
       <li>
         <%= link_to post.title, post_path(post) %>
         <%= post.published %>
+        <div>
+          <%= post.tag_list %>
+        </div>
       </li>
     <% end %>
   </ul>
