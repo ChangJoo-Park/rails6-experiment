@@ -7,15 +7,5 @@
 </div>
 <div>
   <h2>Published Posts</h2>
-  <ul>
-    <% @posts.each do |post| %>
-      <li>
-        <%= link_to post.title, post_path(post) %>
-        <%= post.published %>
-        <div>
-          <%= post.tag_list %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+  <%= render partial: "components/post_list_item", collection: @posts, as: :post, locals: { has_user: false } %>
 </div>
