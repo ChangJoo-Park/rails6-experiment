@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    params[:tag] ? @posts = Post.tagged_with(params[:tag]) : @posts = Post.where({ published: true }).except(:content).includes(:user).order(published_at: :asc).limit(10)
+    params[:tag] ? @posts = Post.tagged_with(params[:tag]) : @posts = Post.feeds
   end
 
   # GET /posts/1

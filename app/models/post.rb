@@ -15,6 +15,10 @@ class Post < ApplicationRecord
 
   # https://rubyplus.com/articles/4241-Tagging-from-Scratch-in-Rails-5
 
+  def self.feeds
+    self.where({ published: true }).except(:content).includes(:user).order(published_at: :asc).limit(10)
+  end
+
   def self.all_by_user(user)
     # TODO: raise error if user not found
     self.where(user: user).except(:content)
