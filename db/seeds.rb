@@ -28,20 +28,25 @@ puts "USER CREATED"
 
 users.each do |user|
   Faker::Number.between(10, 20).times do |index|
+    tag_list = []
+    Faker::Number.between(2, 5).times do |tag_index|
+      tag_list.push(Faker::Hacker.adjective.parameterize)
+    end
+
     post = Post.create(
       title: Faker::Lorem.sentence,
       content: Faker::Lorem.paragraph,
       published: Faker::Boolean.boolean(0.7),
+      tag_list: tag_list.join(", "),
       user: user
     )
-    puts "POST #{index} was created"
     posts.push(post)
   end
 end
 
 puts "POST CREATED"
 
-(users.length * posts.length).times do |post|
+2000.times do |post|
   user = users.sample
   post = posts.sample
   Comment.create(
