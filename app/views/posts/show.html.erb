@@ -14,9 +14,7 @@
           Published at <%= @post.published_at %>
 
           <div>
-            <% @post.tag_list.split(',').each do |tag|  %>
-              <%= link_to "##{tag.strip}", tag_path(tag.strip) %>&nbsp;
-            <% end %>
+            <%= render "components/tag_list", tags: @post.tag_list %>
           </div>
         </div>
       </div>

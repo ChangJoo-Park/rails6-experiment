@@ -58,9 +58,6 @@
   .post-meta {
     font-size: 1rem;
   }
-  .post-meta-tag {
-    font-family: monospace;
-  }
 }
 
 .post {
@@ -116,4 +113,10 @@
   .comment-body {
     font-size: 1.2rem;
   }
+}
+
+.post-meta-tag {
+  font-family: monospace;
+  color: #333;
+  font-size: 1.2rem;
 }

@@ -9,9 +9,7 @@
   </div>
   <div class="post-meta">
     <div>
-      <% post.tag_list.split(',').each do |tag| %>
-        <%= link_to "##{tag.strip}", tag_path(tag.strip), class: "post-meta-tag" %> &nbsp;
-      <% end %>
+      <%= render "components/tag_list", tags: post.tag_list %>
     </div>
     <div>
       <%= post.published_at %>

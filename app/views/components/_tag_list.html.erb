@@ -1,0 +1,3 @@
+<% tags.split(',').each do |tag| %>
+  <%= link_to "##{tag.strip}", tag_path(tag.strip), class: "post-meta-tag" %> &nbsp;
+<% end %>
