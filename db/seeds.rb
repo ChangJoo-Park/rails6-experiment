@@ -20,7 +20,8 @@ USER_COUNT.times do |index|
     email: Faker::Internet.email,
     password: Faker::Internet.email
   )
-  puts "User #{index} was created"
+  user.user_profile.username = "#{Faker::Internet.username}#{Faker::Lorem.word}"
+  user.user_profile.name = Faker::Name.name
   users.push(user)
 end
 

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'user_profile/edit'
+  get 'user_profile/update'
   root 'posts#index'
   devise_for :users
   resources :posts do

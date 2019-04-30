@@ -7,5 +7,13 @@ class User < ApplicationRecord
   # has_paper_trail on: [:update :destroy]
   has_many :posts
   has_many :comments
+  has_one :user_profile
   acts_as_favoritor
+
+  after_create :build_user_profile
+
+  def build_user_profile
+    self.user_profile = UserProfile.new(user: self)
+    self.user_profile.save
+  end
 end

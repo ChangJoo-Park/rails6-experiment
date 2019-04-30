@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_29_054355) do
+ActiveRecord::Schema.define(version: 2019_04_30_132656) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -96,6 +96,22 @@ ActiveRecord::Schema.define(version: 2019_04_29_054355) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_profiles", force: :cascade do |t|
+    t.string "bio"
+    t.string "avatar"
+    t.string "username"
+    t.string "name"
+    t.string "website"
+    t.string "background_color"
+    t.string "foreground_color"
+    t.string "location"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
+    t.index ["username"], name: "index_user_profiles_on_username", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -124,4 +140,5 @@ ActiveRecord::Schema.define(version: 2019_04_29_054355) do
   add_foreign_key "posts", "users"
   add_foreign_key "taggings", "posts"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "user_profiles", "users"
 end
