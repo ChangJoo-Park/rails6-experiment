@@ -17,27 +17,27 @@ comments = []
 
 USER_COUNT.times do |index|
   user = User.create(
-    email: Faker::Internet.email,
-    password: Faker::Internet.email
+    email: FFaker::Internet.email,
+    password: FFaker::Internet.email
   )
-  user.user_profile.username = "#{Faker::Internet.username}#{Faker::Lorem.word}"
-  user.user_profile.name = Faker::Name.name
+  user.user_profile.username = "#{FFaker::Internet.username}#{FFaker::Lorem.word}"
+  user.user_profile.name = FFaker::Name.name
   users.push(user)
 end
 
 puts "USER CREATED"
 
 users.each do |user|
-  Faker::Number.between(10, 20).times do |index|
+  FFaker::Number.between(10, 20).times do |index|
     tag_list = []
-    Faker::Number.between(2, 5).times do |tag_index|
-      tag_list.push(Faker::Hacker.adjective.parameterize)
+    FFaker::Number.between(2, 5).times do |tag_index|
+      tag_list.push(FFaker::Hacker.adjective.parameterize)
     end
 
     post = Post.create(
-      title: Faker::Lorem.sentence,
-      content: Faker::Lorem.paragraph,
-      published: Faker::Boolean.boolean(0.7),
+      title: FFaker::Lorem.sentence,
+      content: FFaker::Lorem.paragraph,
+      published: FFaker::Boolean.boolean(0.7),
       tag_list: tag_list.join(", "),
       user: user
     )
@@ -51,7 +51,7 @@ puts "POST CREATED"
   user = users.sample
   post = posts.sample
   Comment.create(
-    body: Faker::Lorem.sentence,
+    body: FFaker::Lorem.sentence,
     user: user,
     post: post
   )
