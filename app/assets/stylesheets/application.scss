@@ -32,15 +32,22 @@ body {
 
 // Post
 .post-preview {
-  border: 1px solid #333;
   margin-top: 1rem;
   margin-bottom: 2rem;
 
   a {
     color: #333;
+    text-decoration: none;
   }
 
+  .post-details {
+    border: 1px solid #B8C2CC;
+  }
+
+
   .post-title {
+    padding-left: .25rem;
+    padding-right: .25rem;
     font-size: 2.5rem;
     margin-bottom: 1rem;
   }
@@ -48,11 +55,15 @@ body {
   .post-author {
     font-size: 1rem;
     margin-bottom: 1rem;
+    padding-left: .25rem;
+    padding-right: .25rem;
   }
 
 
   .post-meta {
     font-size: 1rem;
+    padding-left: .25rem;
+    padding-right: .25rem;
   }
 }
 
@@ -93,12 +104,12 @@ body {
 
 .post-comment-form {
   margin-bottom: 1rem;
-  border: 1px solid #333;
+  border: 1px solid #B8C2CC;
   padding: 1rem;
 }
 
 .post .comment {
-  border: 1px solid #333;
+  border: 1px solid #B8C2CC;
   border-radius: .5rem;
   padding: 1rem;
   margin-bottom: 2rem;

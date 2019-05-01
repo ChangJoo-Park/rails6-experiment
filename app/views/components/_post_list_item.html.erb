@@ -1,33 +1,37 @@
 <div class="post-preview">
   <% if post.cover.attached? %>
-    <%= image_tag post.cover.variant(resize: "600"), class: "img-fluid" %>
-  <% end %>
-  <div class="post-title">
-    <%= link_to post.title, post %>
-  </div>
-  <div class="post-author">
-    <% if has_user %>
-      <%= link_to user_path(post.user) do %>
-      <% if post.user.user_profile.avatar.attached? %>
-        <%= image_tag post.user.user_profile.avatar.variant(resize: "32"), class: "img-fluid" %>
-      <% else %>
-        <%= adorable_avatar(post.user.email, 32) %>
-      <% end %>
-
-      <% if post.user.user_profile.username.present? %>
-        <%= post.user.user_profile.username %>
-      <% else %>
-        <%= post.user.email %>
-      <% end %>
-      <% end %>
+    <%= link_to post do %>
+      <%= image_tag post.cover.variant(resize: "600"), class: "img-fluid" %>
     <% end %>
-  </div>
-  <div class="post-meta">
-    <div>
-      <%= render "components/tag_list", tags: post.tag_list %>
+  <% end %>
+  <div class="post-details">
+    <div class="post-title">
+      <%= link_to post.title, post %>
     </div>
-    <div>
-      <%= post.published_at %>
+    <div class="post-author">
+      <% if has_user %>
+        <%= link_to user_path(post.user) do %>
+        <% if post.user.user_profile.avatar.attached? %>
+          <%= image_tag post.user.user_profile.avatar.variant(resize: "32"), class: "img-fluid" %>
+        <% else %>
+          <%= adorable_avatar(post.user.email, 32) %>
+        <% end %>
+
+        <% if post.user.user_profile.username.present? %>
+          <%= post.user.user_profile.username %>
+        <% else %>
+          <%= post.user.email %>
+        <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="post-meta">
+      <div>
+        <%= render "components/tag_list", tags: post.tag_list %>
+      </div>
+      <div>
+        <%= post.published_at %>
+      </div>
     </div>
   </div>
 </div>
