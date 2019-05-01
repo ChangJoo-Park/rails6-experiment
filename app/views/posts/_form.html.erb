@@ -1,8 +1,20 @@
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<%= form_with(model: post, local: true, html: { autocomplete: "off" }) do |form| %>
+  <div class="form-group d-flex justify-content-end">
+    <div class="btn-group">
+      <%= form.submit "저장하기", class: "btn btn-outline-dark" %>
+      <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
+        <a class="dropdown-item" href="#">저장과 동시에 발행</a>
+        <a class="dropdown-item" href="#">저장만</a>
+      </div>
+    </div>
+  </div>
 
+  <% if post.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+      <h3><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h3>
       <ul>
         <% post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,31 +22,20 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+
+  <div class="form-group">
     <%= form.hidden_field :user %>
   </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="form-group">
+    <%= form.text_field :title, class: "form-control form-control-lg", autofocus: true, placeholder: "오늘은 어떤 일이 있었나요?" %>
   </div>
 
-  <div class="field">
-    <%= form.label :tag_list %>
-    <%= form.text_field :tag_list %>
+  <div class="form-group">
+    <%= form.text_field :tag_list, class: "form-control", placeholder: "javascript, deploy, vue.js", style: "font-family: monospace;" %>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.rich_text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :published %>
-    <%= form.check_box :published %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.rich_text_area :content, class: "form-control form-control-lg", placeholder: "자유롭게 적어주세요" %>
   </div>
 <% end %>
