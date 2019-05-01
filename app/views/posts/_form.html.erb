@@ -32,6 +32,23 @@
   </div>
 
   <div class="form-group">
+
+  </div>
+
+  <!--
+  TODO: Bootstrap 스타일을 입혀야함
+  <div class="form-group custom-file" style="margin-bottom: 1rem;">
+    <%= form.file_field :cover, class: "custom-file-input", accept: 'image/png, image/jpeg, image/jpg' %>
+    <label class="custom-file-label" for="customFile">커버를 추가할까요?</label>
+  </div>
+  -->
+
+  <div class="form-group">
+    <%= form.label :cover %>
+    <%= form.file_field :cover %>
+  </div>
+
+  <div class="form-group">
     <%= form.rich_text_area :content, class: "form-control form-control-lg", placeholder: "자유롭게 적어주세요" %>
   </div>
 <% end %>

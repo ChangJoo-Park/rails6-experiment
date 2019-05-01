@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   acts_as_favoritable
 
   has_rich_text :content
+  has_one_attached :cover
 
   belongs_to :user
 
@@ -16,12 +17,13 @@ class Post < ApplicationRecord
   # https://rubyplus.com/articles/4241-Tagging-from-Scratch-in-Rails-5
 
   def self.feeds
+    # FIXME: change when completed
     self
-      .where({ published: true })
       .except(:content)
-      .includes([:tags, :user])
-      .order(published_at: :desc)
+      .includes([:tags, :user, :cover_attachment])
+      .order(created_at: :desc)
       .limit(10)
+      # .where({ published: true })
   end
 
   def self.all_by_user(user)
@@ -35,7 +37,7 @@ class Post < ApplicationRecord
   end
 
   def self.tagged_with(name)
-    Tag.find_by!(name: name).posts.includes([:user, :tags])
+    Tag.find_by!(name: name).posts.includes([:user, :tags, :cover_attachment])
   end
 
   def self.tag_counts

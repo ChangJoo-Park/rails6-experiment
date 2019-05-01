@@ -1,4 +1,7 @@
 <div class="post-preview">
+  <% if post.cover.present? %>
+    <%= image_tag post.cover.variant(resize: "600"), class: "img-fluid" %>
+  <% end %>
   <div class="post-title">
     <%= link_to post.title, post %>
   </div>

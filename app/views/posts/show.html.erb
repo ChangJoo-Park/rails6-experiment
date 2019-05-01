@@ -2,9 +2,10 @@
   <div class="alert alert-warning"><%= notice %></div>
 <% end %>
 <div class="row justify-content-center">
-  <div class="post col-9">
+  <div class="post col-10">
     <div class="post-details">
       <div class="post-header">
+        <%= image_tag @post.cover, class: "img-fluid" %>
         <h1 class="post-header-title"><%= @post.title %></h1>
         <div class="post-meta">
           <div class="post-meta-author">
@@ -18,7 +19,6 @@
           </div>
         </div>
       </div>
-
       <div class="post-content">
         <%= @post.content %>
       </div>
