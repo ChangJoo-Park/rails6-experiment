@@ -5,7 +5,9 @@
   <div class="post col-10">
     <div class="post-details">
       <div class="post-header">
-        <%= image_tag @post.cover, class: "img-fluid" %>
+        <% if @post.cover.attached? %>
+          <%= image_tag @post.cover, class: "img-fluid" %>
+        <% end %>
         <h1 class="post-header-title"><%= @post.title %></h1>
         <div class="post-meta">
           <div class="post-meta-author">

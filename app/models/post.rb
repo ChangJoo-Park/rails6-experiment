@@ -34,7 +34,7 @@ class Post < ApplicationRecord
 
   def self.published_by_user(user)
     # TODO: raise error if user not found
-    self.includes(:tags).except(:content).where(user: user, published: true)
+    self.with_attached_cover.includes(:tags).except(:content).where(user: user, published: true)
   end
 
   def self.tagged_with(name)

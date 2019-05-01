@@ -9,3 +9,7 @@
   <h2>Published Posts</h2>
   <%= render partial: "components/post_list_item", collection: @posts, as: :post, locals: { has_user: false } %>
 </div>
+
+<% if @same_user %>
+  <%= @user.user_profile %>
+<% end %>
