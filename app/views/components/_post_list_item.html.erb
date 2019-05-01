@@ -1,5 +1,5 @@
 <div class="post-preview">
-  <% if post.cover.present? %>
+  <% if post.cover.attached? %>
     <%= image_tag post.cover.variant(resize: "600"), class: "img-fluid" %>
   <% end %>
   <div class="post-title">

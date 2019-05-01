@@ -19,6 +19,7 @@ class Post < ApplicationRecord
   def self.feeds
     # FIXME: change when completed
     self
+      .with_attached_cover
       .except(:content)
       .includes([:tags, :user, :cover_attachment])
       .order(created_at: :desc)
