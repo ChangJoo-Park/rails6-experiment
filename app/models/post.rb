@@ -21,7 +21,7 @@ class Post < ApplicationRecord
     self
       .with_attached_cover
       .except(:content)
-      .includes([:tags, :user, :cover_attachment])
+      .includes([:tags, :cover_attachment, user: [user_profile: :avatar_attachment]])
       .order(created_at: :desc)
       .limit(10)
       # .where({ published: true })
@@ -32,9 +32,13 @@ class Post < ApplicationRecord
     self.where(user: user).except(:content)
   end
 
-  def self.published_by_user(user)
-    # TODO: raise error if user not found
-    self.with_attached_cover.includes(:tags).except(:content).where(user: user, published: true)
+  def self.published_by_user(user, same_user)
+    self
+      .with_attached_cover
+      .includes(:tags)
+      .except(:content)
+      .where(user: user, published: !same_user)
+      .order(created_at: :desc)
   end
 
   def self.tagged_with(name)

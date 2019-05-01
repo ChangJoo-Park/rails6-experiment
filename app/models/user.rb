@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_one :user_profile
+
   acts_as_favoritor
 
   after_create :build_user_profile
