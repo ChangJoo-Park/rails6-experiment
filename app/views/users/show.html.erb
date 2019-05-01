@@ -1,15 +1,53 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-
-<div>
+<div style="margin-bottom: 1rem;">
   <%= adorable_avatar(@user.email, 200) %>
   <%= @user.email %>
 </div>
-<div>
-  <h2>Published Posts</h2>
-  <%= render partial: "components/post_list_item", collection: @posts, as: :post, locals: { has_user: false } %>
-</div>
 
-<% if @same_user %>
-  <%= @user.user_profile %>
-<% end %>
+<ul class="nav nav-pills" style="margin-bottom: 1rem;">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#posts">Posts</a>
+  </li>
+  <% if @same_user %>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#setting">Setting</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#security">Security</a>
+    </li>
+  <% end %>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="posts">
+    <%= render partial: "components/post_list_item", collection: @posts, as: :post, locals: { has_user: false } %>
+  </div>
+  <% if @same_user %>
+  <div class="tab-pane fade" id="setting">
+    <%= form_with(model: @user.user_profile, local: true, html: { autocomplete: "off" }) do |form| %>
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :bio %>
+        <%= form.text_area :bio, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :website %>
+        <%= form.text_field :website, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :location %>
+        <%= form.text_field :location, class: "form-control" %>
+      </div>
+
+      <%= form.submit "저장하기", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="tab-pane fade" id="security">
+    <p>Curabitur dignissim quis nunc vitae laoreet. Etiam ut mattis leo, vel fermentum tellus. Sed sagittis rhoncus venenatis. Quisque commodo consectetur faucibus. Aenean eget ultricies justo.</p>
+  </div>
+  <% end %>
+</div>

@@ -9,8 +9,7 @@ Rails.application.routes.draw do
   get 'tags/:tag', to: 'posts#index', as: :tag
 
   resources :users, only: [:show] do
-    get 'profile', to: 'user_profile#edit'
-    resources :user_profile, only: [:update]
+    patch 'profile', to: 'user_profile#update'
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
