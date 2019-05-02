@@ -1,5 +1,27 @@
 <div class="row">
-  <div class="col-3">col-3</div>
+  <div class="col-3">
+    <% if user_signed_in? %>
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+          <%= image_tag current_user.user_profile.avatar.variant(resize: "100"), class: "card-img" %>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= current_user.user_profile.username %></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div style="border-radius: 0.25rem; border: 1px solid rgba(0, 0, 0, 0.125); padding: 1rem;">
+      <div class="text-center">커뮤니티 스폰서</div>
+      <br>
+      <div class="text-center">
+        <a href="#">첫번째 후원을 해주세요</a>
+      </div>
+    </div>
+  </div>
   <div class="col">
     <p id="notice"><%= notice %></p>
 
