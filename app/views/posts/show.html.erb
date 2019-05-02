@@ -11,8 +11,17 @@
         <h1 class="post-header-title"><%= @post.title %></h1>
         <div class="post-meta">
           <div class="post-meta-author">
-            <%= adorable_avatar(@post.user.email, 30) %>
-            <%= link_to @post.user.email, user_path(@post.user) %>
+            <% if @post.user.user_profile.avatar.attached? %>
+              <%= image_tag @post.user.user_profile.avatar, class: "img-fluid", width: 30, height: 30 %>
+            <% else %>
+              <%= adorable_avatar(@post.user.email, 30) %>
+            <% end %>
+
+            <% if @post.user.user_profile.username.present? %>
+              <%= link_to @post.user.user_profile.username, user_path(@post.user) %>
+            <% else %>
+              <%= link_to @post.user.email, user_path(@post.user) %>
+            <% end %>
           </div>
           Published at <%= @post.published_at %>
 
@@ -27,9 +36,21 @@
 
       <hr>
 
-      <div class="author" style="margin-bottom: 1rem;">
-        <%= adorable_avatar(@post.user.email, 160) %>
-        <%= link_to @post.user.email, user_path(@post.user) %>
+      <div class="author">
+        <div class="user-show-details-avatar">
+          <% if @post.user.user_profile.avatar.attached? %>
+            <%= image_tag @post.user.user_profile.avatar, class: "img-thumbnail img-fluid", width: 80, height: 80 %>
+          <% else %>
+            <%= adorable_avatar(@post.user.email, 80) %>
+          <% end %>
+        </div>
+        <div class="user-show-details-meta">
+          <% if @post.user.user_profile.username.present? %>
+            <h4><%= @post.user.user_profile.username %></h4>
+          <% else %>
+            <h4><%= @post.user.email %></h4>
+          <% end %>
+        </div>
       </div>
     </div>
 
@@ -49,9 +70,17 @@
       <% @post.comments.each do |comment| %>
         <% if comment.id.present? %>
           <div class="comment">
-            <div class="comment-author">
-              <%= adorable_avatar(@post.user.email, 30) %>
-              <%= link_to comment.user.email, user_path(comment.user) %>
+          <div class="comment-author">
+              <% if comment.user.user_profile.avatar.attached? %>
+                <%= image_tag comment.user.user_profile.avatar, class: "img-fluid", width: 30, height: 30 %>
+              <% else %>
+                <%= adorable_avatar(comment.user.email, 30) %>
+              <% end %>
+              <% if comment.user.user_profile.username.present? %>
+                <%= link_to comment.user.user_profile.username, user_path(comment.user) %>
+              <% else %>
+                <%= link_to comment.user.email, user_path(comment.user) %>
+              <% end %>
               <%= comment.created_at %>
             </div>
             <div class="comment-body">
