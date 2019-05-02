@@ -1,12 +1,25 @@
 <div class="row justify-content-center">
   <div class="col-9">
-    <div style="margin-bottom: 1rem;">
-      <% if @user.user_profile.avatar.attached? %>
-        <%= image_tag @user.user_profile.avatar, class: "img-thumbnail img-fluid" %>
-      <% else %>
-        <%= adorable_avatar(@user.email, 200) %>
-      <% end %>
-      <%= @user.email %>
+    <div class="user-show-details">
+      <div class="user-show-details-avatar">
+        <% if @user.user_profile.avatar.attached? %>
+          <%= image_tag @user.user_profile.avatar, class: "img-thumbnail img-fluid" %>
+        <% else %>
+          <%= adorable_avatar(@user.email, 200) %>
+        <% end %>
+      </div>
+      <div class="user-show-details-meta">
+        <h1><%= @user.user_profile.username %></h1>
+        <h5><%= @user.user_profile.name %></h5>
+        <p class="font-weight-light font-italic"><%= @user.user_profile.bio %></p>
+        <p class="font-weight-light"><%= @user.created_at %> 가입함</p>
+        <%# TODO: Using icons below %>
+        <p><%= @user.email %></p>
+        <% unless @same_user %>
+          <%# TODO: Add following user %>
+          <button class="btn btn-outline-dark">팔로우</button>
+        <% end %>
+      </div>
     </div>
 
     <hr>

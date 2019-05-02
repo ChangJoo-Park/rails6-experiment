@@ -131,3 +131,15 @@ body {
 trix-editor {
   min-height: 500px;
 }
+
+// User show
+.user-show-details {
+  margin-bottom: 1rem;
+  display: flex;
+  .user-show-details-avatar {
+    margin-right: 1rem;
+  }
+  .user-show-details-meta {
+    margin-right: 1rem;
+  }
+}
