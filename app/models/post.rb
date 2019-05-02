@@ -42,7 +42,7 @@ class Post < ApplicationRecord
   end
 
   def self.tagged_with(name)
-    Tag.find_by!(name: name).posts.includes([:user, :tags, :cover_attachment])
+    Tag.find_by!(name: name).posts.includes([:tags, :cover_attachment, user: [user_profile: :avatar_attachment]])
   end
 
   def self.tag_counts
