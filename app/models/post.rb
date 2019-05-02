@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   before_save :set_published_at
 
@@ -18,23 +20,22 @@ class Post < ApplicationRecord
 
   def self.feeds
     # FIXME: change when completed
-    self
-      .with_attached_cover
+
+    with_attached_cover
       .except(:content)
       .includes([:tags, :cover_attachment, user: [user_profile: :avatar_attachment]])
       .order(created_at: :desc)
       .limit(10)
-      # .where({ published: true })
+    # .where({ published: true })
   end
 
   def self.all_by_user(user)
     # TODO: raise error if user not found
-    self.where(user: user).except(:content)
+    where(user: user).except(:content)
   end
 
   def self.published_by_user(user, same_user)
-    self
-      .with_attached_cover
+    with_attached_cover
       .includes(:tags)
       .except(:content)
       .where(user: user, published: !same_user)
@@ -60,6 +61,6 @@ class Post < ApplicationRecord
   end
 
   def set_published_at
-    self.published ? self.published_at = DateTime.now : self.published_at = nil
+    self.published_at = (published ? DateTime.now : nil)
   end
 end

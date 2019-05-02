@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -15,7 +17,7 @@ users = []
 posts = []
 comments = []
 
-USER_COUNT.times do |index|
+USER_COUNT.times do |_index|
   user = User.create(
     email: FFaker::Internet.email,
     password: FFaker::Internet.email
@@ -25,12 +27,12 @@ USER_COUNT.times do |index|
   users.push(user)
 end
 
-puts "USER CREATED"
+puts 'USER CREATED'
 
 users.each do |user|
-  FFaker::Number.between(10, 20).times do |index|
+  FFaker::Number.between(10, 20).times do |_index|
     tag_list = []
-    FFaker::Number.between(2, 5).times do |tag_index|
+    FFaker::Number.between(2, 5).times do |_tag_index|
       tag_list.push(FFaker::Hacker.adjective.parameterize)
     end
 
@@ -38,14 +40,14 @@ users.each do |user|
       title: FFaker::Lorem.sentence,
       content: FFaker::Lorem.paragraph,
       published: FFaker::Boolean.boolean(0.7),
-      tag_list: tag_list.join(", "),
+      tag_list: tag_list.join(', '),
       user: user
     )
     posts.push(post)
   end
 end
 
-puts "POST CREATED"
+puts 'POST CREATED'
 
 2000.times do |post|
   user = users.sample
@@ -57,4 +59,4 @@ puts "POST CREATED"
   )
 end
 
-puts "COMMENT CREATED"
+puts 'COMMENT CREATED'

@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class UserProfileController < ApplicationController
-  def edit
-  end
+  def edit; end
 
   def update
     @user_profile = UserProfile.find(params[:user_id])

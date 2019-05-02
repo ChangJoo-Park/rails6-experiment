@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'posts#index'
   devise_for :users
 
   resources :posts do
-    resources :comments, only: [:create, :update, :destory]
+    resources :comments, only: %i[create update destory]
   end
 
   get 'tags/:tag', to: 'posts#index', as: :tag

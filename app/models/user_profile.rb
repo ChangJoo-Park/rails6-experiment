@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserProfile < ApplicationRecord
   # TODO: Add unique validation for username
   belongs_to :user

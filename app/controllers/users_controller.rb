@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   def show
     # 사용자 로그인 및 현재 로그인한 사용자인 경우 처리
