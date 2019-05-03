@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Post < ApplicationRecord
   before_save :set_published_at
 
@@ -18,23 +20,22 @@ class Post < ApplicationRecord
 
   def self.feeds
     # FIXME: change when completed
-    self
-      .with_attached_cover
+
+    with_attached_cover
       .except(:content)
       .includes([:tags, :cover_attachment, user: [user_profile: :avatar_attachment]])
       .order(created_at: :desc)
       .limit(10)
-      # .where({ published: true })
+    # .where({ published: true })
   end
 
   def self.all_by_user(user)
     # TODO: raise error if user not found
-    self.where(user: user).except(:content)
+    where(user: user).except(:content)
   end
 
   def self.published_by_user(user, same_user)
-    self
-      .with_attached_cover
+    with_attached_cover
       .includes(:tags)
       .except(:content)
       .where(user: user, published: !same_user)
@@ -46,20 +47,20 @@ class Post < ApplicationRecord
   end
 
   def self.tag_counts
-    Tag.select('tags.*, count(taggings.tag_id) as count').joins(:taggings).group('taggings.tag_id')
+    Tag.select("tags.*, count(taggings.tag_id) as count").joins(:taggings).group("taggings.tag_id")
   end
 
   def tag_list
-    tags.map(&:name).join(', ')
+    tags.map(&:name).join(", ")
   end
 
   def tag_list=(names)
-    self.tags = names.split(',').map do |n|
+    self.tags = names.split(",").map do |n|
       Tag.where(name: n.strip.downcase).first_or_create!
     end
   end
 
   def set_published_at
-    self.published ? self.published_at = DateTime.now : self.published_at = nil
+    self.published_at = (published ? DateTime.now.in_time_zone : nil)
   end
 end

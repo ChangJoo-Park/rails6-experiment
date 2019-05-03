@@ -1,13 +1,13 @@
-class Favorite < ActiveRecord::Base
+# frozen_string_literal: true
 
-    extend ActsAsFavoritor::FavoritorLib
-    extend ActsAsFavoritor::FavoriteScopes
+class Favorite < ApplicationRecord
+  extend ActsAsFavoritor::FavoritorLib
+  extend ActsAsFavoritor::FavoriteScopes
 
-    belongs_to :favoritable, polymorphic: true
-    belongs_to :favoritor, polymorphic: true
+  belongs_to :favoritable, polymorphic: true
+  belongs_to :favoritor, polymorphic: true
 
-    def block!
-        self.update_attributes blocked: true
-    end
-
+  def block!
+    update blocked: true
+  end
 end

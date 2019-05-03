@@ -9,6 +9,12 @@
 #
 # See https://github.com/rubocop-hq/rubocop/blob/master/manual/configuration.md
 # rubocop.yml from jhass https://gist.github.com/jhass/a5ae80d87f18e53e7b56#file-rubocop-yml
+AllCops:
+  Include:
+    - 'app/**/*.rb'
+    - 'test/**/*.rb'
+  Exclude:
+    - 'bin/**/*'
 Rails:
   Enabled: true
 

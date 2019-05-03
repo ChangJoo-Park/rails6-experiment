@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 class UserProfileController < ApplicationController
-  def edit
-  end
+  def edit; end
 
   def update
     @user_profile = UserProfile.find(params[:user_id])
 
     respond_to do |format|
       if @user_profile.update(user_profile_params)
-        format.html { redirect_to user_path(params[:user_id]), notice: 'User Profile was successfully updated.' }
+        format.html { redirect_to user_path(params[:user_id]), notice: "User Profile was successfully updated." }
         format.json { render :show, status: :ok, location: @user_profile }
       else
         format.html { redirect_to user_path(params[:user_id]) }

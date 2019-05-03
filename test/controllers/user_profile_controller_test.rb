@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class UserProfileControllerTest < ActionDispatch::IntegrationTest
   test "should get edit" do
@@ -10,5 +12,4 @@ class UserProfileControllerTest < ActionDispatch::IntegrationTest
     get user_profile_update_url
     assert_response :success
   end
-
 end

@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
   test "should get create" do
@@ -15,5 +17,4 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     get comments_destroy_url
     assert_response :success
   end
-
 end
