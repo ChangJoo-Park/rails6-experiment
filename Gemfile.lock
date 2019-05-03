@@ -188,6 +188,11 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.6)
+<<<<<<< HEAD
+=======
+    rubocop-performance (1.1.0)
+      rubocop (>= 0.67.0)
+>>>>>>> b1b2dec0a8e2325db8cbec470fd07db010ef6d14
     ruby-progressbar (1.10.0)
     ruby-vips (2.0.13)
       ffi (~> 1.9)
@@ -274,6 +279,10 @@ DEPENDENCIES
   rails (~> 6.0.0.rc1)
   redis (~> 4.0)
   rubocop
+<<<<<<< HEAD
+=======
+  rubocop-performance
+>>>>>>> b1b2dec0a8e2325db8cbec470fd07db010ef6d14
   sass-rails (~> 5)
   selenium-webdriver
   spring
