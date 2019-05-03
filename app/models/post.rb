@@ -61,6 +61,6 @@ class Post < ApplicationRecord
   end
 
   def set_published_at
-    self.published_at = (published ? DateTime.now : nil)
+    self.published_at = (published ? DateTime.now.in_time_zone : nil)
   end
 end

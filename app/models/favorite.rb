@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Favorite < ActiveRecord::Base
+class Favorite < ApplicationRecord
   extend ActsAsFavoritor::FavoritorLib
   extend ActsAsFavoritor::FavoriteScopes
 
@@ -8,6 +8,6 @@ class Favorite < ActiveRecord::Base
   belongs_to :favoritor, polymorphic: true
 
   def block!
-    update_attributes blocked: true
+    update blocked: true
   end
 end

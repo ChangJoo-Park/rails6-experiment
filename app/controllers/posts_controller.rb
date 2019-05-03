@@ -13,7 +13,7 @@ class PostsController < ApplicationController
       @title = "태그: #{params[:tag]}"
     else
       @posts = Post.feeds
-      @title = 'Posts'
+      @title = "Posts"
     end
   end
 
