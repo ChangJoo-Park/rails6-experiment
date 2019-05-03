@@ -14,7 +14,16 @@
         </div>
       </div>
     <% end %>
-    <div class="mb-3" style="border-radius: 0.25rem; border: 1px solid rgba(0, 0, 0, 0.125); padding: 1rem;">
+
+    <div class="overflow-auto p-3 mb-3 bg-light border" style="height: 420px;">
+      <ul class="list-unstyled">
+      <% @tags.each do |tag| %>
+        <li><%= link_to "##{tag.name}", tag_path(tag.name.strip), class: "text-monospace" %></li>
+      <% end %>
+      </ul>
+    </div>
+
+    <div class="mb-3 border">
       <div class="text-center">커뮤니티 스폰서</div>
       <br>
       <div class="text-center">
@@ -22,10 +31,10 @@
       </div>
     </div>
     <!-- Key links  -->
-    <div style="border-radius: 0.25rem; border: 1px solid rgba(0, 0, 0, 0.125); padding: 1rem;">
+    <div class="mb-3 border">
       <div class="text-center">Key Links</div>
       <br>
-      <ul>
+      <ul class="list-unstyled pl-3">
         <li>About</li>
         <li>스폰서</li>
         <li>스토어</li>

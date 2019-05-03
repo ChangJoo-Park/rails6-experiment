@@ -15,6 +15,7 @@ class PostsController < ApplicationController
       @posts = Post.feeds
       @title = "Posts"
     end
+    @tags = Tag.all.limit(20)
   end
 
   # GET /posts/1
