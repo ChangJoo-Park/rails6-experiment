@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, only: %i[create update destory]
+    resource :favorite, only: %i[create destroy]
   end
 
   get 'tags/:tag', to: 'posts#index', as: :tag

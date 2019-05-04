@@ -5,8 +5,6 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
 
-  acts_as_favoritable
-
   has_rich_text :content
   has_one_attached :cover
 
@@ -15,6 +13,7 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :taggings
   has_many :tags, through: :taggings
+  has_many :favorites, dependent: :destroy
 
   # https://rubyplus.com/articles/4241-Tagging-from-Scratch-in-Rails-5
 

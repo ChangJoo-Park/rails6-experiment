@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,135 +10,131 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_190_501_022_641) do
-  create_table 'action_text_rich_texts', force: :cascade do |t|
-    t.string 'name', null: false
-    t.text 'body'
-    t.string 'record_type', null: false
-    t.integer 'record_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index %w[record_type record_id name], name: 'index_action_text_rich_texts_uniqueness', unique: true
+ActiveRecord::Schema.define(version: 2019_05_04_152551) do
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table 'active_storage_attachments', force: :cascade do |t|
-    t.string 'name', null: false
-    t.string 'record_type', null: false
-    t.integer 'record_id', null: false
-    t.integer 'blob_id', null: false
-    t.datetime 'created_at', null: false
-    t.index ['blob_id'], name: 'index_active_storage_attachments_on_blob_id'
-    t.index %w[record_type record_id name blob_id], name: 'index_active_storage_attachments_uniqueness', unique: true
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table 'active_storage_blobs', force: :cascade do |t|
-    t.string 'key', null: false
-    t.string 'filename', null: false
-    t.string 'content_type'
-    t.text 'metadata'
-    t.bigint 'byte_size', null: false
-    t.string 'checksum', null: false
-    t.datetime 'created_at', null: false
-    t.index ['key'], name: 'index_active_storage_blobs_on_key', unique: true
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table 'comments', force: :cascade do |t|
-    t.string 'body'
-    t.integer 'post_id', null: false
-    t.integer 'user_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['post_id'], name: 'index_comments_on_post_id'
-    t.index ['user_id'], name: 'index_comments_on_user_id'
+  create_table "comments", force: :cascade do |t|
+    t.string "body"
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table 'favorites', force: :cascade do |t|
-    t.string 'favoritable_type', null: false
-    t.integer 'favoritable_id', null: false
-    t.string 'favoritor_type', null: false
-    t.integer 'favoritor_id', null: false
-    t.string 'scope', default: 'favorite', null: false
-    t.boolean 'blocked', default: false, null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['blocked'], name: 'index_favorites_on_blocked'
-    t.index %w[favoritable_id favoritable_type], name: 'fk_favoritables'
-    t.index %w[favoritable_type favoritable_id], name: 'index_favorites_on_favoritable_type_and_favoritable_id'
-    t.index %w[favoritor_id favoritor_type], name: 'fk_favorites'
-    t.index %w[favoritor_type favoritor_id], name: 'index_favorites_on_favoritor_type_and_favoritor_id'
-    t.index ['scope'], name: 'index_favorites_on_scope'
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_favorites_on_post_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table 'posts', force: :cascade do |t|
-    t.string 'title'
-    t.text 'content'
-    t.boolean 'published', default: false
-    t.datetime 'published_at'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'user_id'
-    t.string 'cover'
-    t.index ['user_id'], name: 'index_posts_on_user_id'
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.boolean "published", default: false
+    t.datetime "published_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.string "cover"
+    t.integer "favorites_count"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table 'taggings', force: :cascade do |t|
-    t.integer 'tag_id', null: false
-    t.integer 'post_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['post_id'], name: 'index_taggings_on_post_id'
-    t.index ['tag_id'], name: 'index_taggings_on_tag_id'
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_taggings_on_post_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
 
-  create_table 'tags', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'user_profiles', force: :cascade do |t|
-    t.string 'bio'
-    t.string 'avatar'
-    t.string 'username'
-    t.string 'name'
-    t.string 'website'
-    t.string 'background_color'
-    t.string 'foreground_color'
-    t.string 'location'
-    t.integer 'user_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['user_id'], name: 'index_user_profiles_on_user_id'
-    t.index ['username'], name: 'index_user_profiles_on_username', unique: true
+  create_table "user_profiles", force: :cascade do |t|
+    t.string "bio"
+    t.string "avatar"
+    t.string "username"
+    t.string "name"
+    t.string "website"
+    t.string "background_color"
+    t.string "foreground_color"
+    t.string "location"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
+    t.index ["username"], name: "index_user_profiles_on_username", unique: true
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table 'versions', force: :cascade do |t|
-    t.string 'item_type', null: false
-    t.integer 'item_id', limit: 8, null: false
-    t.string 'event', null: false
-    t.string 'whodunnit'
-    t.text 'object', limit: 1_073_741_823
-    t.datetime 'created_at'
-    t.index %w[item_type item_id], name: 'index_versions_on_item_type_and_item_id'
+  create_table "versions", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.integer "item_id", limit: 8, null: false
+    t.string "event", null: false
+    t.string "whodunnit"
+    t.text "object", limit: 1073741823
+    t.datetime "created_at"
+    t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
-  add_foreign_key 'comments', 'posts'
-  add_foreign_key 'comments', 'users'
-  add_foreign_key 'posts', 'users'
-  add_foreign_key 'taggings', 'posts'
-  add_foreign_key 'taggings', 'tags'
-  add_foreign_key 'user_profiles', 'users'
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "users"
+  add_foreign_key "posts", "users"
+  add_foreign_key "taggings", "posts"
+  add_foreign_key "taggings", "tags"
+  add_foreign_key "user_profiles", "users"
 end

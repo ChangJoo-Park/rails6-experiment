@@ -13,10 +13,28 @@
           </div>
         </div>
       </div>
+      <!-- Favorites -->
+      <div class="mb-3 p-3 border">
+        <div class="text-monospace">
+          Favorites
+        </div>
+        <ul class="list-unstyled overflow-auto" style="max-height: 420px;">
+          <!-- FIXME: move to controller below -->
+          <% if current_user.favorites.includes(:post).order(created_at: :desc).each do |favorite| %>
+            <li><%= link_to  favorite.post.title, favorite.post %></li>
+          <% end.empty? %>
+            좋아하는 글이 없습니다.
+          <% end %>
+        </ul>
+      </div>
     <% end %>
 
-    <div class="overflow-auto p-3 mb-3 bg-light border" style="height: 420px;">
-      <ul class="list-unstyled">
+    <div class="mb-3 p-3 border">
+      <div class="text-monospace">
+        Tags
+      </div>
+
+      <ul class="list-unstyled overflow-auto" style="height: 420px;">
       <% @tags.each do |tag| %>
         <li><%= link_to "##{tag.name}", tag_path(tag.name.strip), class: "text-monospace" %></li>
       <% end %>

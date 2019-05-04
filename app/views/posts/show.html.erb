@@ -28,6 +28,14 @@
           <div>
             <%= render "components/tag_list", tags: @post.tag_list %>
           </div>
+
+          <% if user_signed_in? %>
+            <% if current_user.favorited?(@post) %>
+              <%= link_to "저장취소", post_favorite_path(@post.id), method: :delete %>
+            <% else %>
+              <%= link_to "저장하기", post_favorite_path(@post.id), method: :post %>
+            <% end %>
+          <% end %>
         </div>
       </div>
       <div class="post-content">

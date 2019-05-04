@@ -56,8 +56,6 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.1, >= 2.1.4)
-    acts_as_favoritor (2.0.1)
-      activerecord (>= 5.0)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
     ast (2.4.0)
@@ -258,7 +256,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts_as_favoritor
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   bullet

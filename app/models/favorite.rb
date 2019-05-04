@@ -1,13 +1,6 @@
 # frozen_string_literal: true
 
 class Favorite < ApplicationRecord
-  extend ActsAsFavoritor::FavoritorLib
-  extend ActsAsFavoritor::FavoriteScopes
-
-  belongs_to :favoritable, polymorphic: true
-  belongs_to :favoritor, polymorphic: true
-
-  def block!
-    update blocked: true
-  end
+  belongs_to :user
+  belongs_to :post, counter_cache: true
 end
