@@ -25,6 +25,9 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new(user: current_user)
+    if params[:tag]
+      @post.tag_list = params[:tag]
+    end
   end
 
   # GET /posts/1/edit
