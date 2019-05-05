@@ -88,29 +88,29 @@
         <li>test</li>
       </ul>
       <div class="text-center">
-        <%= link_to  "글쓰기", new_post_path, class: "btn btn-outline-dark" %>
+        <%= link_to  "글쓰기", new_post_path(@post, tag: "help"), class: "btn btn-outline-dark" %>
       </div>
     </div>
     <div class="mb-3 p-3 border">
       <div class="text-monospace">
-        #help
+        #discuss
       </div>
       <ul>
         <li>test</li>
       </ul>
       <div class="text-center">
-        <%= link_to  "글쓰기", new_post_path, class: "btn btn-outline-dark" %>
+        <%= link_to  "글쓰기", new_post_path(@post, tag: "discuss"), class: "btn btn-outline-dark" %>
       </div>
     </div>
     <div class="mb-3 p-3 border">
       <div class="text-monospace">
-        #help
+        #ama
       </div>
       <ul>
         <li>test</li>
       </ul>
       <div class="text-center">
-        <%= link_to  "글쓰기", new_post_path, class: "btn btn-outline-dark" %>
+        <%= link_to  "글쓰기", new_post_path(@post, tag: "ama"), class: "btn btn-outline-dark" %>
       </div>
     </div>
   </div>
