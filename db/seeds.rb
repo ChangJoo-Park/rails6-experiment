@@ -22,7 +22,7 @@ USER_COUNT.times do |_index|
     email: FFaker::Internet.email,
     password: FFaker::Internet.email
   )
-  user.user_profile.username = "#{FFaker::Internet.username}#{FFaker::Lorem.word}"
+  user.username = "#{FFaker::Internet.username}#{FFaker::Lorem.word}"
   user.user_profile.name = FFaker::Name.name
   users.push(user)
 end

@@ -4,11 +4,11 @@
       <div class="card mb-3">
         <div class="row no-gutters">
           <div class="col-md-4">
-          <%= image_tag current_user.user_profile.avatar.variant(resize: "100"), class: "card-img" %>
+           <!-- TODO: 아바타를 보여줄 수 있도록 해야함 -->
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title"><%= current_user.user_profile.username %></h5>
+              <h5 class="card-title"><%= current_user.username %></h5>
             </div>
           </div>
         </div>

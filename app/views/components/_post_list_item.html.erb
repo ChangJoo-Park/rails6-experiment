@@ -17,8 +17,8 @@
           <%= adorable_avatar(post.user.email, 32) %>
         <% end %>
 
-        <% if post.user.user_profile.username.present? %>
-          <%= post.user.user_profile.username %>
+        <% if post.user.username.present? %>
+          <%= post.user.username %>
         <% else %>
           <%= post.user.email %>
         <% end %>

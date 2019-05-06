@@ -17,8 +17,8 @@
               <%= adorable_avatar(@post.user.email, 30) %>
             <% end %>
 
-            <% if @post.user.user_profile.username.present? %>
-              <%= link_to @post.user.user_profile.username, user_path(@post.user) %>
+            <% if @post.user.username.present? %>
+              <%= link_to @post.user.username, user_path(@post.user) %>
             <% else %>
               <%= link_to @post.user.email, user_path(@post.user) %>
             <% end %>
@@ -62,8 +62,8 @@
           <% end %>
         </div>
         <div class="user-show-details-meta">
-          <% if @post.user.user_profile.username.present? %>
-            <h4><%= @post.user.user_profile.username %></h4>
+          <% if @post.user.username.present? %>
+            <h4><%= @post.user.username %></h4>
           <% else %>
             <h4><%= @post.user.email %></h4>
           <% end %>
@@ -93,8 +93,8 @@
               <% else %>
                 <%= adorable_avatar(comment.user.email, 30) %>
               <% end %>
-              <% if comment.user.user_profile.username.present? %>
-                <%= link_to comment.user.user_profile.username, user_path(comment.user) %>
+              <% if comment.user.username.present? %>
+                <%= link_to comment.user.username, user_path(comment.user) %>
               <% else %>
                 <%= link_to comment.user.email, user_path(comment.user) %>
               <% end %>
