@@ -1,8 +1,8 @@
 <div class="row justify-content-center">
-  <% if notice.present? %>
-    <div class="alert alert-warning"><%= notice %></div>
-  <% end %>
-  <div class="post col-10" style="max-width: 650px;">
+  <div class="post col-10 mb-5 pb-5 border" style="max-width: 650px;">
+    <% if notice.present? %>
+      <div class="alert alert-warning"><%= notice %></div>
+    <% end %>
     <% if @post.cover.attached? %>
       <%= image_tag @post.cover, class: "img-fluid" %>
     <% end %>
@@ -57,13 +57,13 @@
         </div>
       </div>
     </div>
-
+    <hr>
     <div class="post-comments">
-      <div class="post-comment-form">
-        <strong>Comment</strong>
+      <div class="post-comment-form border">
+        <strong>댓글남기기</strong>
         <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
           <div class="form-group">
-            <%= form.text_area :body, class: "form-control", placeholder: "Add Your Oppinion." %>
+            <%= form.text_area :body, class: "form-control", placeholder: "댓글을 남겨주세요" %>
           </div>
           <p class="text-right">
             <%= form.submit '남기기', class: "btn btn-primary" %>
@@ -73,7 +73,7 @@
 
       <% @post.comments.each do |comment| %>
         <% if comment.id.present? %>
-          <div class="comment">
+          <div class="comment border mb-1">
           <div class="comment-author">
               <% if comment.user.user_profile.avatar.attached? %>
                 <%= image_tag comment.user.user_profile.avatar, class: "img-fluid", width: 30, height: 30 %>
