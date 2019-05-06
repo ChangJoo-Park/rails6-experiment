@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-3">
+  <div class="col-12 col-md-3 col-xl-2">
     <% if user_signed_in? %>
       <div class="card mb-3">
         <div class="row no-gutters">
@@ -14,10 +14,8 @@
         </div>
       </div>
       <!-- Favorites -->
-      <div class="mb-3 border">
-        <div class="text-monospace">
-          Favorites
-        </div>
+      <div class="mb-3 border p-3">
+        <div class="text-monospace text-center">Favorites</div>
         <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
           <!-- FIXME: move to controller below -->
           <% if current_user.favorites.includes(:post).order(created_at: :desc).each do |favorite| %>
@@ -29,8 +27,8 @@
       </div>
     <% end %>
 
-    <div class="mb-3 border">
-      <div class="text-monospace">
+    <div class="mb-3 border p-3">
+      <div class="text-monospace text-center">
         Tags
       </div>
 
@@ -41,18 +39,16 @@
       </ul>
     </div>
 
-    <div class="mb-3 border">
-      <div class="text-center">커뮤니티 스폰서</div>
-      <br>
+    <div class="mb-3 border p-3">
+      <div class="text-monospace text-center">커뮤니티 스폰서</div>
       <div class="text-center">
         <a href="#">첫번째 후원을 해주세요</a>
       </div>
     </div>
     <!-- Key links  -->
-    <div class="mb-3 border">
+    <div class="mb-3 border p-3">
       <div class="text-center">Key Links</div>
-      <br>
-      <ul class="list-unstyled pl-3">
+      <ul class="list-unstyled">
         <li>About</li>
         <li>스폰서</li>
         <li>스토어</li>
@@ -85,47 +81,45 @@
         <%= will_paginate %>
       </div>
       <% if @posts.next_page %>
-        <div id="load-more-post" class="btn btn-block btn-primary" data-action="click->posts#loadMore">Load More</div>
+        <button id="load-more-post" class="btn btn-block btn-primary" data-action="click->posts#loadMore">더 보기</button>
       <% end %>
     </div>
     <br>
   </div>
   <%# Large 스크린 이상에서만 노출 %>
-  <% unless @has_tag %>
-    <div class="col-3">
-      <div class="mb-3 p-3 border">
-        <div class="text-monospace">
-          #help
-        </div>
-        <ul>
-          <li>test</li>
-        </ul>
-        <div class="text-center">
-          <%= link_to  "글쓰기", new_post_path(@post, tag: "help"), class: "btn btn-sm btn-block btn-outline-dark" %>
-        </div>
+  <div class="d-none d-xl-block col-xl-2">
+    <div class="mb-3 p-3 border">
+      <div class="text-monospace">
+        #help
       </div>
-      <div class="mb-3 p-3 border">
-        <div class="text-monospace">
-          #discuss
-        </div>
-        <ul>
-          <li>test</li>
-        </ul>
-        <div class="text-center">
-          <%= link_to  "글쓰기", new_post_path(@post, tag: "discuss"), class: "btn btn-sm btn-block btn-outline-dark" %>
-        </div>
-      </div>
-      <div class="mb-3 p-3 border">
-        <div class="text-monospace">
-          #ama
-        </div>
-        <ul>
-          <li>test</li>
-        </ul>
-        <div class="text-center">
-          <%= link_to  "글쓰기", new_post_path(@post, tag: "ama"), class: "btn btn-sm btn-block btn-outline-dark" %>
-        </div>
+      <ul>
+        <li>test</li>
+      </ul>
+      <div class="text-center">
+        <%= link_to  "글쓰기", new_post_path(@post, tag: "help"), class: "btn btn-sm btn-outline-dark px-5" %>
       </div>
     </div>
-  <% end %>
+    <div class="mb-3 p-3 border">
+      <div class="text-monospace">
+        #discuss
+      </div>
+      <ul>
+        <li>test</li>
+      </ul>
+      <div class="text-center">
+        <%= link_to  "글쓰기", new_post_path(@post, tag: "discuss"), class: "btn btn-sm btn-outline-dark px-5" %>
+      </div>
+    </div>
+    <div class="mb-3 p-3 border">
+      <div class="text-monospace">
+        #ama
+      </div>
+      <ul>
+        <li>test</li>
+      </ul>
+      <div class="text-center">
+        <%= link_to  "글쓰기", new_post_path(@post, tag: "ama"), class: "btn btn-sm btn-outline-dark px-5" %>
+      </div>
+    </div>
+  </div>
 </div>
