@@ -50,14 +50,14 @@
     <div class="mb-3 border p-3">
       <div class="text-center">Key Links</div>
       <ul class="list-unstyled">
-        <li>About</li>
-        <li>스폰서</li>
+        <li><%= link_to  "소개", about_path %></li>
+        <li><%= link_to  "스폰서", sponsors_path %></li>
         <li>스토어</li>
-        <li>이용약관</li>
-        <li>개인정보</li>
-        <li>문의하기</li>
-        <li>자주 묻는 질문</li>
-        <li>행동강령</li>
+        <li><%= link_to  "이용약관", terms_path %></li>
+        <li><%= link_to  "개인정보", privacy_path %></li>
+        <li><%= link_to  "문의하기", contact_path %></li>
+        <li><%= link_to  "자주 묻는 질문", faq_path %></li>
+        <li><%= link_to  "행동강령", code_of_conduct_path %></li>
       </ul>
     </div>
   </div>
