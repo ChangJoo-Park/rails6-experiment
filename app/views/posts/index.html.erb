@@ -64,19 +64,16 @@
   <div class="col">
     <p id="notice"><%= notice %></p>
 
-    <h1 class="text-center"><%= @title %></h1>
+    <h1 class="text-center title text-monospace"><%= @title %></h1>
 
     <div
       data-controller="posts"
       data-action="scroll@window->posts#onScroll"
       class="container posts-container"
+      style="max-width: 650px;"
     >
       <div class="posts">
-        <%=
-          render partial: "components/post_list_item",
-          collection: @posts, as: :post,
-          locals: { has_user: true }
-        %>
+        <%= render @posts %>
       </div>
       <div id="paginate-load-more-button" style="display: none;">
         <%= will_paginate %>
