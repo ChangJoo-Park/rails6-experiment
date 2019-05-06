@@ -9,18 +9,15 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @has_tag = params[:tag].present?
-    if params[:tag]
-      @posts = Post.tagged_with(params[:tag])
+    if @has_tag
+      @posts = Post.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 10)
       @title = "태그: #{params[:tag]}"
     else
-      @posts = Post.with_attached_cover
-                   .except(:content)
-                   .includes([:tags, :cover_attachment, user: [user_profile: :avatar_attachment]])
-                   .order(created_at: :desc)
-                   .paginate(page: params[:page], per_page: 10)
+      @posts = Post.feeds.paginate(page: params[:page], per_page: 10)
       @title = "Posts"
     end
     @tags = Tag.all.limit(10)
+
     respond_to do |format|
       format.html
       format.js
