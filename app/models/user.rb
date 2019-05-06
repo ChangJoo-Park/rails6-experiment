@@ -17,6 +17,13 @@ class User < ApplicationRecord
 
   after_create :build_user_profile
 
+  def avatar(size=256)
+    if user_profile.avatar.present?
+      user_profile.avatar.variant(resize: size)
+    else
+      "https://api.adorable.io/avatars/#{size}/#{email}"
+    end
+  end
   def build_user_profile
     self.user_profile = UserProfile.new(user: self)
     user_profile.save
