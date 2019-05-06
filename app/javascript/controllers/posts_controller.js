@@ -22,7 +22,7 @@ export default class extends Controller {
     const more_posts_url = $('#paginate-load-more-button > div > a.next_page').attr('href')
     $.ajax({
       type: 'GET',
-      url: `posts/${more_posts_url}`,
+      url: `posts${more_posts_url}`,
       dataType: 'script',
       success: function () {
         console.log('succeed')
