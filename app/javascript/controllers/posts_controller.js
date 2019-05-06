@@ -11,7 +11,11 @@ import { Controller } from "stimulus"
 
 export default class extends Controller {
   connect() {
-    console.log('connected')
+    console.log('[posts] connected')
+  }
+
+  disconnect() {
+    console.log('[posts] disconnected')
   }
 
   onScroll () {
