@@ -1,27 +1,18 @@
-<% if notice.present? %>
-  <div class="alert alert-warning"><%= notice %></div>
-<% end %>
 <div class="row justify-content-center">
-  <div class="post col-10">
+  <% if notice.present? %>
+    <div class="alert alert-warning"><%= notice %></div>
+  <% end %>
+  <div class="post col-10" style="max-width: 650px;">
+    <% if @post.cover.attached? %>
+      <%= image_tag @post.cover, class: "img-fluid" %>
+    <% end %>
     <div class="post-details">
       <div class="post-header">
-        <% if @post.cover.attached? %>
-          <%= image_tag @post.cover, class: "img-fluid" %>
-        <% end %>
         <h1 class="post-header-title"><%= @post.title %></h1>
         <div class="post-meta">
           <div class="post-meta-author">
-            <% if @post.user.user_profile.avatar.attached? %>
-              <%= image_tag @post.user.user_profile.avatar, class: "img-fluid", width: 30, height: 30 %>
-            <% else %>
-              <%= adorable_avatar(@post.user.email, 30) %>
-            <% end %>
-
-            <% if @post.user.username.present? %>
-              <%= link_to @post.user.username, user_path(@post.user) %>
-            <% else %>
-              <%= link_to @post.user.email, user_path(@post.user) %>
-            <% end %>
+            <%= image_tag @post.user.avatar(64), class: "rounded", width: 32, height: 32 %>
+            <%= link_to @post.user.username, user_path(@post.user) %>
           </div>
           <% if @post.published? %>
             Published at <%= @post.published_at %>
@@ -53,13 +44,9 @@
 
       <hr>
 
-      <div class="author">
+      <div class="author bg-light">
         <div class="user-show-details-avatar">
-          <% if @post.user.user_profile.avatar.attached? %>
-            <%= image_tag @post.user.user_profile.avatar, class: "img-thumbnail img-fluid", width: 80, height: 80 %>
-          <% else %>
-            <%= adorable_avatar(@post.user.email, 80) %>
-          <% end %>
+          <%= image_tag @post.user.avatar(160), class: "rounded img-fluid", width: 80, height: 80 %>
         </div>
         <div class="user-show-details-meta">
           <% if @post.user.username.present? %>
