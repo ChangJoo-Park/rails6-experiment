@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :set_post_with_comments, only: [:show]
-  before_action :set_post, only: %i[edit update destroy]
+  before_action :set_post, only: %i[edit update destroy publish unpublish]
   before_action :authenticate_user!, except: %i[index show publish unpublish]
 
   # GET /posts
@@ -76,7 +76,6 @@ class PostsController < ApplicationController
   end
 
   def publish
-    @post = Post.find(params[:id])
     @post.published = true
     respond_to do |format|
       if @post.save
@@ -90,7 +89,6 @@ class PostsController < ApplicationController
   end
 
   def unpublish
-    @post = Post.find(params[:id])
     @post.published = false
     respond_to do |format|
       if @post.save
