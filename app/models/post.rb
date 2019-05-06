@@ -30,11 +30,11 @@ class Post < ApplicationRecord
     where(user: user).except(:content)
   end
 
-  def self.published_by_user(user, same_user)
+  def self.published_by_user(user)
     with_attached_cover
       .includes(:tags)
       .except(:content)
-      .where(user: user, published: !same_user)
+      .where(user: user, published: true)
       .order(created_at: :desc)
   end
 
