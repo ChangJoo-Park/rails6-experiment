@@ -20,12 +20,17 @@ export default class extends Controller {
 
   loadMore () {
     const more_posts_url = $('#paginate-load-more-button > div > a.next_page').attr('href')
+    $('#load-more-post').hide()
     $.ajax({
       type: 'GET',
       url: `posts${more_posts_url}`,
       dataType: 'script',
       success: function () {
         console.log('succeed')
+        $('#load-more-post').show()
+      },
+      error: function () {
+        $('#load-more-post').show()
       }
     })
   }
