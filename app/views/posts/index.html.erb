@@ -69,12 +69,24 @@
 
     <h1 class="text-center"><%= @title %></h1>
 
-    <div>
-      <%=
-        render partial: "components/post_list_item",
-        collection: @posts, as: :post,
-        locals: { has_user: true }
-      %>
+    <div
+      data-controller="posts"
+      data-action="scroll@window->posts#onScroll"
+      class="posts-container"
+    >
+      <div class="posts">
+        <%=
+          render partial: "components/post_list_item",
+          collection: @posts, as: :post,
+          locals: { has_user: true }
+        %>
+      </div>
+      <div id="paginate-load-more-button" style="display: none;">
+        <%= will_paginate %>
+      </div>
+      <% if @posts.next_page %>
+        <div id="load-more-post" class="btn btn-block btn-primary" data-action="click->posts#loadMore">Load More</div>
+      <% end %>
     </div>
     <br>
   </div>

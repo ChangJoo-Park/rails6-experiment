@@ -1,0 +1,15 @@
+function appendHtml(el, str) {
+  var div = document.createElement('div');
+  div.innerHTML = str;
+  while (div.children.length > 0) {
+    el.appendChild(div.children[0]);
+  }
+}
+
+appendHtml(document.querySelector('.posts'), '<%= escape_javascript(render(partial: "components/post_list_item", collection: @posts, as: :post, locals: { has_user: true })) %>')
+
+<% if (@posts.next_page) %>
+  document.querySelector('#paginate-load-more-button').innerHTML = '<%= j will_paginate @posts %>'
+<% else %>
+  document.querySelector('#paginate-load-more-button').innerHTML = ''
+<% end %>

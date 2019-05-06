@@ -13,10 +13,18 @@ class PostsController < ApplicationController
       @posts = Post.tagged_with(params[:tag])
       @title = "태그: #{params[:tag]}"
     else
-      @posts = Post.feeds
+      @posts = Post.with_attached_cover
+                   .except(:content)
+                   .includes([:tags, :cover_attachment, user: [user_profile: :avatar_attachment]])
+                   .order(created_at: :desc)
+                   .paginate(page: params[:page], per_page: 10)
       @title = "Posts"
     end
     @tags = Tag.all.limit(10)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /posts/1
@@ -26,9 +34,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new(user: current_user)
-    if params[:tag]
-      @post.tag_list = params[:tag]
-    end
+    @post.tag_list = params[:tag] if params[:tag]
   end
 
   # GET /posts/1/edit

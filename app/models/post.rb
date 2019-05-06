@@ -19,12 +19,10 @@ class Post < ApplicationRecord
 
   def self.feeds
     # FIXME: change when completed
-
     with_attached_cover
-      .except(:content)
-      .includes([:tags, :cover_attachment, user: [user_profile: :avatar_attachment]])
-      .order(created_at: :desc)
-      .limit(10)
+    .except(:content)
+    .includes([:tags, :cover_attachment, user: [user_profile: :avatar_attachment]])
+    .order(created_at: :desc)
     # .where({ published: true })
   end
 
