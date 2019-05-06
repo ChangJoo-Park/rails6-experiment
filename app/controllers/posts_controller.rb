@@ -80,10 +80,10 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: "UPDATED." }
-        format.json { head :no_content }
+        format.json { render :show, status: :ok, location: @post }
       else
         format.html { redirect_to @post, notice: "NOT UPDATED." }
-        format.json { head :no_content }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -93,10 +93,10 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: "UPDATED." }
-        format.json { head :no_content }
+        format.json { render :show, status: :ok, location: @post }
       else
         format.html { redirect_to @post, notice: "NOT UPDATED." }
-        format.json { head :no_content }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
