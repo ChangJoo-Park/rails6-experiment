@@ -23,13 +23,22 @@
               <%= link_to @post.user.email, user_path(@post.user) %>
             <% end %>
           </div>
-          Published at <%= @post.published_at %>
+          <% if @post.published? %>
+            Published at <%= @post.published_at %>
+          <% end %>
 
           <div>
             <%= render "components/tag_list", tags: @post.tag_list %>
           </div>
 
           <% if user_signed_in? %>
+            <% if current_user.id == @post.user.id %>
+              <% if @post.published? %>
+              <%= link_to '발행취소', unpublish_post_path(@post), method: :put %>
+              <% else %>
+              <%= link_to '발행하기', publish_post_path(@post), method: :put %>
+              <% end %>
+            <% end %>
             <% if current_user.favorited?(@post) %>
               <%= link_to "저장취소", post_favorite_path(@post.id), method: :delete %>
             <% else %>

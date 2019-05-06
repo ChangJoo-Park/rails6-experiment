@@ -14,14 +14,14 @@
         </div>
       </div>
       <!-- Favorites -->
-      <div class="mb-3 p-3 border">
+      <div class="mb-3 border">
         <div class="text-monospace">
           Favorites
         </div>
-        <ul class="list-unstyled overflow-auto" style="max-height: 420px;">
+        <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
           <!-- FIXME: move to controller below -->
           <% if current_user.favorites.includes(:post).order(created_at: :desc).each do |favorite| %>
-            <li><%= link_to  favorite.post.title, favorite.post %></li>
+            <li><%= link_to  favorite.post.title, favorite.post, class: "text-secondary"%></li>
           <% end.empty? %>
             좋아하는 글이 없습니다.
           <% end %>
@@ -29,14 +29,14 @@
       </div>
     <% end %>
 
-    <div class="mb-3 p-3 border">
+    <div class="mb-3 border">
       <div class="text-monospace">
         Tags
       </div>
 
-      <ul class="list-unstyled overflow-auto" style="height: 420px;">
+      <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
       <% @tags.each do |tag| %>
-        <li><%= link_to "##{tag.name}", tag_path(tag.name.strip), class: "text-monospace" %></li>
+        <li><%= link_to "##{tag.name}", tag_path(tag.name.strip), class: "text-monospace text-secondary" %></li>
       <% end %>
       </ul>
     </div>
@@ -67,7 +67,7 @@
   <div class="col">
     <p id="notice"><%= notice %></p>
 
-    <h1><%= @title %></h1>
+    <h1 class="text-center"><%= @title %></h1>
 
     <div>
       <%=
@@ -79,39 +79,41 @@
     <br>
   </div>
   <%# Large 스크린 이상에서만 노출 %>
-  <div class="col-3">
-    <div class="mb-3 p-3 border">
-      <div class="text-monospace">
-        #help
+  <% unless @has_tag %>
+    <div class="col-3">
+      <div class="mb-3 p-3 border">
+        <div class="text-monospace">
+          #help
+        </div>
+        <ul>
+          <li>test</li>
+        </ul>
+        <div class="text-center">
+          <%= link_to  "글쓰기", new_post_path(@post, tag: "help"), class: "btn btn-sm btn-block btn-outline-dark" %>
+        </div>
       </div>
-      <ul>
-        <li>test</li>
-      </ul>
-      <div class="text-center">
-        <%= link_to  "글쓰기", new_post_path(@post, tag: "help"), class: "btn btn-outline-dark" %>
+      <div class="mb-3 p-3 border">
+        <div class="text-monospace">
+          #discuss
+        </div>
+        <ul>
+          <li>test</li>
+        </ul>
+        <div class="text-center">
+          <%= link_to  "글쓰기", new_post_path(@post, tag: "discuss"), class: "btn btn-sm btn-block btn-outline-dark" %>
+        </div>
+      </div>
+      <div class="mb-3 p-3 border">
+        <div class="text-monospace">
+          #ama
+        </div>
+        <ul>
+          <li>test</li>
+        </ul>
+        <div class="text-center">
+          <%= link_to  "글쓰기", new_post_path(@post, tag: "ama"), class: "btn btn-sm btn-block btn-outline-dark" %>
+        </div>
       </div>
     </div>
-    <div class="mb-3 p-3 border">
-      <div class="text-monospace">
-        #discuss
-      </div>
-      <ul>
-        <li>test</li>
-      </ul>
-      <div class="text-center">
-        <%= link_to  "글쓰기", new_post_path(@post, tag: "discuss"), class: "btn btn-outline-dark" %>
-      </div>
-    </div>
-    <div class="mb-3 p-3 border">
-      <div class="text-monospace">
-        #ama
-      </div>
-      <ul>
-        <li>test</li>
-      </ul>
-      <div class="text-center">
-        <%= link_to  "글쓰기", new_post_path(@post, tag: "ama"), class: "btn btn-outline-dark" %>
-      </div>
-    </div>
-  </div>
+  <% end %>
 </div>

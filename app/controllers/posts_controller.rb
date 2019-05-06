@@ -3,11 +3,12 @@
 class PostsController < ApplicationController
   before_action :set_post_with_comments, only: [:show]
   before_action :set_post, only: %i[edit update destroy]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show publish unpublish]
 
   # GET /posts
   # GET /posts.json
   def index
+    @has_tag = params[:tag].present?
     if params[:tag]
       @posts = Post.tagged_with(params[:tag])
       @title = "태그: #{params[:tag]}"
@@ -15,7 +16,7 @@ class PostsController < ApplicationController
       @posts = Post.feeds
       @title = "Posts"
     end
-    @tags = Tag.all.limit(20)
+    @tags = Tag.all.limit(10)
   end
 
   # GET /posts/1
@@ -71,6 +72,34 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def publish
+    @post = Post.find(params[:id])
+    @post.published = true
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to @post, notice: "UPDATED." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @post, notice: "NOT UPDATED." }
+        format.json { head :no_content }
+      end
+    end
+  end
+
+  def unpublish
+    @post = Post.find(params[:id])
+    @post.published = false
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to @post, notice: "UPDATED." }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @post, notice: "NOT UPDATED." }
+        format.json { head :no_content }
+      end
     end
   end
 
