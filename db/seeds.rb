@@ -20,9 +20,9 @@ comments = []
 USER_COUNT.times do |_index|
   user = User.create(
     email: FFaker::Internet.email,
+    username: FFaker::Name.unique.name.parameterize,
     password: FFaker::Internet.email
   )
-  user.username = "#{FFaker::Internet.username}#{FFaker::Lorem.word}"
   user.user_profile.name = FFaker::Name.name
   users.push(user)
 end
@@ -30,16 +30,16 @@ end
 puts 'USER CREATED'
 
 users.each do |user|
-  FFaker::Number.between(10, 20).times do |_index|
+  20.times do |_index|
     tag_list = []
-    FFaker::Number.between(2, 5).times do |_tag_index|
-      tag_list.push(FFaker::Hacker.adjective.parameterize)
+    5.times do |_tag_index|
+      tag_list.push(FFaker::BaconIpsum.word.parameterize)
     end
 
     post = Post.create(
-      title: FFaker::Lorem.sentence,
-      content: FFaker::Lorem.paragraph,
-      published: FFaker::Boolean.boolean(0.7),
+      title: FFaker::LoremKR.sentence,
+      content: FFaker::LoremKR.paragraphs,
+      published: FFaker::Boolean.maybe,
       tag_list: tag_list.join(', '),
       user: user
     )
@@ -53,7 +53,7 @@ puts 'POST CREATED'
   user = users.sample
   post = posts.sample
   Comment.create(
-    body: FFaker::Lorem.sentence,
+    body: FFaker::LoremKR.sentence,
     user: user,
     post: post
   )
