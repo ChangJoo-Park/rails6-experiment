@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_06_084936) do
+ActiveRecord::Schema.define(version: 2019_05_07_121111) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2019_05_06_084936) do
     t.integer "user_id"
     t.string "cover"
     t.integer "favorites_count"
+    t.integer "comments_count"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

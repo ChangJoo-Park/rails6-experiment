@@ -17,6 +17,9 @@
         <div>
           <%= render "components/tag_list", tags: post.tag_list %>
         </div>
+        <div>
+          댓글 : <%= post.comments.size %>
+        </div>
       </p>
       <%= link_to  "읽어보기", post, class: "btn btn-outline-primary stretched-link" %>
     </div>
