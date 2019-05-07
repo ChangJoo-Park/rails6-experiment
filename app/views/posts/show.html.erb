@@ -49,11 +49,8 @@
           <%= image_tag @post.user.avatar(160), class: "rounded img-fluid", width: 80, height: 80 %>
         </div>
         <div class="user-show-details-meta">
-          <% if @post.user.username.present? %>
-            <h4><%= @post.user.username %></h4>
-          <% else %>
-            <h4><%= @post.user.email %></h4>
-          <% end %>
+          <h4><%= @post.user.username %></h4>
+          <p><%= @post.user.user_profile.bio %></p>
         </div>
       </div>
     </div>
