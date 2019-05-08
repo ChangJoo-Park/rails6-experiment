@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 2019_05_07_121111) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.string "cover"
-    t.integer "favorites_count"
-    t.integer "comments_count"
+    t.integer "favorites_count", default: 0
+    t.integer "comments_count", default: 0
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
