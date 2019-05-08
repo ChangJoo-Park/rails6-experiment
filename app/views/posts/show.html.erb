@@ -44,7 +44,7 @@
 
       <hr>
 
-      <div class="author bg-light">
+      <div class="author bg-light px-3">
         <div class="user-show-details-avatar">
           <%= image_tag @post.user.avatar(160), class: "rounded img-fluid", width: 80, height: 80 %>
         </div>
@@ -55,7 +55,7 @@
       </div>
     </div>
     <hr>
-    <div class="post-comments">
+    <div class="post-comments px-3">
       <div class="post-comment-form border">
         <strong>댓글남기기</strong>
         <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
