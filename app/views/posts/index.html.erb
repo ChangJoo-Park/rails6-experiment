@@ -1,64 +1,66 @@
 <div class="row">
   <div class="col-12 col-md-3 col-xl-2">
-    <% if user_signed_in? %>
-      <div class="card mb-3">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-           <!-- TODO: 아바타를 보여줄 수 있도록 해야함 -->
-           <%= image_tag current_user.avatar(100), class: 'rounded mx-auto d-block' %>
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title"><%= current_user.username %></h5>
+    <div style="position: sticky; top: calc(90px + 1rem);">
+      <% if user_signed_in? %>
+        <div class="card mb-3">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+            <!-- TODO: 아바타를 보여줄 수 있도록 해야함 -->
+            <%= image_tag current_user.avatar(100), class: 'rounded mx-auto d-block' %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><%= current_user.username %></h5>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Favorites -->
+        <!-- Favorites -->
+        <div class="mb-3 border p-3">
+          <div class="text-monospace text-center">Favorites</div>
+          <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
+            <!-- FIXME: move to controller below -->
+            <% if current_user.favorites.includes(:post).order(created_at: :desc).each do |favorite| %>
+              <li><%= link_to  favorite.post.title, favorite.post, class: "text-secondary"%></li>
+            <% end.empty? %>
+              좋아하는 글이 없습니다.
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
       <div class="mb-3 border p-3">
-        <div class="text-monospace text-center">Favorites</div>
+        <div class="text-monospace text-center">
+          Tags
+        </div>
+
         <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
-          <!-- FIXME: move to controller below -->
-          <% if current_user.favorites.includes(:post).order(created_at: :desc).each do |favorite| %>
-            <li><%= link_to  favorite.post.title, favorite.post, class: "text-secondary"%></li>
-          <% end.empty? %>
-            좋아하는 글이 없습니다.
-          <% end %>
+        <% @tags.each do |tag| %>
+          <li><%= link_to "##{tag.name}", tag_path(tag.name.strip), class: "text-monospace text-secondary" %></li>
+        <% end %>
         </ul>
       </div>
-    <% end %>
 
-    <div class="mb-3 border p-3">
-      <div class="text-monospace text-center">
-        Tags
+      <div class="mb-3 border p-3">
+        <div class="text-monospace text-center">커뮤니티 스폰서</div>
+        <div class="text-center">
+          <a href="#">첫번째 후원을 해주세요</a>
+        </div>
       </div>
-
-      <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
-      <% @tags.each do |tag| %>
-        <li><%= link_to "##{tag.name}", tag_path(tag.name.strip), class: "text-monospace text-secondary" %></li>
-      <% end %>
-      </ul>
-    </div>
-
-    <div class="mb-3 border p-3">
-      <div class="text-monospace text-center">커뮤니티 스폰서</div>
-      <div class="text-center">
-        <a href="#">첫번째 후원을 해주세요</a>
+      <!-- Key links  -->
+      <div class="mb-3 border p-3">
+        <div class="text-center">Key Links</div>
+        <ul class="list-unstyled">
+          <li><%= link_to  "소개", about_path %></li>
+          <li><%= link_to  "스폰서", sponsors_path %></li>
+          <li>스토어</li>
+          <li><%= link_to  "이용약관", terms_path %></li>
+          <li><%= link_to  "개인정보", privacy_path %></li>
+          <li><%= link_to  "문의하기", contact_path %></li>
+          <li><%= link_to  "자주 묻는 질문", faq_path %></li>
+          <li><%= link_to  "행동강령", code_of_conduct_path %></li>
+        </ul>
       </div>
-    </div>
-    <!-- Key links  -->
-    <div class="mb-3 border p-3">
-      <div class="text-center">Key Links</div>
-      <ul class="list-unstyled">
-        <li><%= link_to  "소개", about_path %></li>
-        <li><%= link_to  "스폰서", sponsors_path %></li>
-        <li>스토어</li>
-        <li><%= link_to  "이용약관", terms_path %></li>
-        <li><%= link_to  "개인정보", privacy_path %></li>
-        <li><%= link_to  "문의하기", contact_path %></li>
-        <li><%= link_to  "자주 묻는 질문", faq_path %></li>
-        <li><%= link_to  "행동강령", code_of_conduct_path %></li>
-      </ul>
     </div>
   </div>
   <div class="col">
@@ -68,7 +70,6 @@
 
     <div
       data-controller="posts"
-      data-action="scroll@window->posts#onScroll"
       class="container posts-container"
       style="max-width: 650px;"
     >
@@ -86,37 +87,39 @@
   </div>
   <%# Large 스크린 이상에서만 노출 %>
   <div class="d-none d-xl-block col-xl-2">
-    <div class="mb-3 p-3 border">
-      <div class="text-monospace">
-        #help
+    <div style="position: sticky; top: calc(90px + 1rem);">
+      <div class="mb-3 p-3 border">
+        <div class="text-monospace">
+          #help
+        </div>
+        <ul>
+          <li>test</li>
+        </ul>
+        <div class="text-center">
+          <%= link_to  "글쓰기", new_post_path(@post, tag: "help"), class: "btn btn-sm btn-outline-dark px-5" %>
+        </div>
       </div>
-      <ul>
-        <li>test</li>
-      </ul>
-      <div class="text-center">
-        <%= link_to  "글쓰기", new_post_path(@post, tag: "help"), class: "btn btn-sm btn-outline-dark px-5" %>
+      <div class="mb-3 p-3 border">
+        <div class="text-monospace">
+          #discuss
+        </div>
+        <ul>
+          <li>test</li>
+        </ul>
+        <div class="text-center">
+          <%= link_to  "글쓰기", new_post_path(@post, tag: "discuss"), class: "btn btn-sm btn-outline-dark px-5" %>
+        </div>
       </div>
-    </div>
-    <div class="mb-3 p-3 border">
-      <div class="text-monospace">
-        #discuss
-      </div>
-      <ul>
-        <li>test</li>
-      </ul>
-      <div class="text-center">
-        <%= link_to  "글쓰기", new_post_path(@post, tag: "discuss"), class: "btn btn-sm btn-outline-dark px-5" %>
-      </div>
-    </div>
-    <div class="mb-3 p-3 border">
-      <div class="text-monospace">
-        #ama
-      </div>
-      <ul>
-        <li>test</li>
-      </ul>
-      <div class="text-center">
-        <%= link_to  "글쓰기", new_post_path(@post, tag: "ama"), class: "btn btn-sm btn-outline-dark px-5" %>
+      <div class="mb-3 p-3 border">
+        <div class="text-monospace">
+          #ama
+        </div>
+        <ul>
+          <li>test</li>
+        </ul>
+        <div class="text-center">
+          <%= link_to  "글쓰기", new_post_path(@post, tag: "ama"), class: "btn btn-sm btn-outline-dark px-5" %>
+        </div>
       </div>
     </div>
   </div>
