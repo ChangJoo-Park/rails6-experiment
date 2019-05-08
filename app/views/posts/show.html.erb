@@ -1,5 +1,5 @@
 <div class="row justify-content-center" data-controller="post">
-  <div class="post col-10 mb-5 pb-5 border" style="max-width: 650px;">
+  <div class="post col-10 mb-5 px-0 pb-5 border" style="max-width: 650px;">
     <% if notice.present? %>
       <div class="alert alert-warning"><%= notice %></div>
     <% end %>
@@ -38,7 +38,7 @@
           <% end %>
         </div>
       </div>
-      <div class="post-content">
+      <div class="post-content p-3">
         <%= @post.content %>
       </div>
 
