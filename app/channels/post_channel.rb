@@ -5,8 +5,6 @@ class PostChannel < ApplicationCable::Channel
     stream_target = "post_#{params[:room]}"
     puts "stream_target #{stream_target}"
     stream_from stream_target
-
-    ActionCable.server.broadcast(stream_target, { message: "HELLO WORLD" })
   end
 
   def unsubscribed

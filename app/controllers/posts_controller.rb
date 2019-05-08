@@ -80,9 +80,6 @@ class PostsController < ApplicationController
   end
 
   def publish
-    puts "=========="
-    ActionCable.server.broadcast('post_test', { message: "PUBLISHED" })
-    puts "=========="
     @post.published = true
     respond_to do |format|
       if @post.save
@@ -96,7 +93,6 @@ class PostsController < ApplicationController
   end
 
   def unpublish
-    ActionCable.server.broadcast('post_test', { message: "UNPUBLISHED" })
     @post.published = false
     respond_to do |format|
       if @post.save

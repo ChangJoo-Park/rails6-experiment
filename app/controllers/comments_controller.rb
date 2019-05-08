@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if comment.save
+        ActionCable.server.broadcast("post_#{post.id}", { type: 'comment', event: 'created', payload: comment })
         format.html { redirect_to post, notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: post }
       else

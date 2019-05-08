@@ -18,10 +18,6 @@ export default class extends Controller {
     console.log('[posts] disconnected')
   }
 
-  onScroll () {
-    console.log('on scroll')
-  }
-
   loadMore () {
     const more_posts_url = $('#paginate-load-more-button > div > a.next_page').attr('href')
     $('#load-more-post').hide()
