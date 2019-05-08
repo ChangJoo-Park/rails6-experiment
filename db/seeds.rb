@@ -38,7 +38,7 @@ users.each do |user|
 
     post = Post.create(
       title: FFaker::LoremKR.sentence,
-      content: FFaker::LoremKR.paragraphs,
+      content: FFaker::LoremKR.paragraphs.join + FFaker::LoremKR.paragraphs.join,
       published: FFaker::Boolean.maybe,
       tag_list: tag_list.join(', '),
       user: user
