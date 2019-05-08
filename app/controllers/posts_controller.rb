@@ -26,7 +26,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   # GET /posts/1.json
-  def show; end
+  def show
+  end
 
   # GET /posts/new
   def new
@@ -79,6 +80,9 @@ class PostsController < ApplicationController
   end
 
   def publish
+    puts "=========="
+    ActionCable.server.broadcast('post_test', { message: "PUBLISHED" })
+    puts "=========="
     @post.published = true
     respond_to do |format|
       if @post.save
@@ -92,6 +96,7 @@ class PostsController < ApplicationController
   end
 
   def unpublish
+    ActionCable.server.broadcast('post_test', { message: "UNPUBLISHED" })
     @post.published = false
     respond_to do |format|
       if @post.save
