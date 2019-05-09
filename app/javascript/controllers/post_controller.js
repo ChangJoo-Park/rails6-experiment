@@ -11,6 +11,8 @@ import { Controller } from "stimulus"
 import consumer from '../channels/consumer'
 
 export default class extends Controller {
+  static targets = [ "message", "commentList" ]
+
   consumer = null;
 
   initialize() {
@@ -28,7 +30,17 @@ export default class extends Controller {
     }
   }
 
+  onPostSuccess(event) {
+    event.preventDefault()
+    this.messageTarget.value = "";
+  }
+
+  onPostError (event) {
+    console.log('event => ', event)
+  }
+
   connectToActionCable() {
+    const thisController = this
     // TODO: Get Post Id from template
     const SUBSCRIPTION = { channel: "PostChannel", room: window.location.pathname.replace('/posts/', '') }
 
@@ -44,9 +56,10 @@ export default class extends Controller {
       },
 
       received(data) {
-        const { type, event, payload } = data;
+        console.log('received => ', data)
+        const { type, event, payload, html } = data;
         if (type === 'comment' && event === 'created') {
-          window.location.reload()
+          thisController.commentListTarget.innerHTML += html;
         }
       }
     });

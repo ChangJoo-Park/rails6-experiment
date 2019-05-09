@@ -1,0 +1,21 @@
+<% if comment.id.present? %>
+<div class="comment border mb-1 <%= 'mine' if current_user.present? && current_user.id == comment.user.id %>">
+  <div class="comment-author">
+      <% if comment.user.user_profile.avatar.attached? %>
+        <%= image_tag comment.user.user_profile.avatar, class: "img-fluid", width: 30, height: 30 %>
+      <% else %>
+        <%= adorable_avatar(comment.user.email, 30) %>
+      <% end %>
+      <% if comment.user.username.present? %>
+        <%= link_to comment.user.username, user_path(comment.user) %>
+      <% else %>
+        <%= link_to comment.user.email, user_path(comment.user) %>
+      <% end %>
+      <%= comment.created_at %>
+    </div>
+
+    <div class="comment-body">
+      <%= comment.body %>
+    </div>
+</div>
+<% end %>

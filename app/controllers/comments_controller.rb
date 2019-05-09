@@ -3,18 +3,13 @@
 class CommentsController < ApplicationController
   def create
     post = Post.find(params[:post_id])
-    comment = post.comments.create(comment_params)
-    comment.user = current_user
-
-    respond_to do |format|
-      if comment.save
-        ActionCable.server.broadcast("post_#{post.id}", { type: 'comment', event: 'created', payload: comment })
-        format.html { redirect_to post, notice: "Comment was successfully created." }
-        format.json { render :show, status: :created, location: post }
-      else
-        format.html { redirect_to post, notice: "Comment was created failed." }
-        format.json { render json: post.errors, status: :unprocessable_entity }
-      end
+    @comment = post.comments.create(comment_params)
+    @comment.user = current_user
+    @comment.save
+    if @comment.errors.any?
+      render partial: "error", comment: @comment, status: :bad_request
+    else
+      ActionCable.server.broadcast("post_#{post.id}", { type: 'comment', event: 'created', payload: @comment, html: render(@comment) })
     end
   end
 

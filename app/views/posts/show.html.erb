@@ -55,41 +55,23 @@
       </div>
     </div>
     <hr>
+
     <div class="post-comments px-3">
+      <div data-target="post.commentList">
+        <%= render partial: "comments/comment", collection: @post.comments, as: @comment %>
+      </div>
+
       <div class="post-comment-form border">
         <strong>댓글남기기</strong>
-        <%= form_with(model: [ @post, @post.comments.build ], local: true) do |form| %>
+        <%= form_with(model: [ @post, @post.comments.build ], remote: true, html: { data: { type: "html", action: "ajax:success->post#onPostSuccess ajax:error->post#onPostError" } }) do |form| %>
           <div class="form-group">
-            <%= form.text_area :body, class: "form-control", placeholder: "댓글을 남겨주세요" %>
+            <%= form.text_area :body, class: "form-control", placeholder: "댓글을 남겨주세요", data: { target: "post.message" } %>
           </div>
           <p class="text-right">
             <%= form.submit '남기기', class: "btn btn-primary" %>
           </p>
         <% end %>
       </div>
-
-      <% @post.comments.each do |comment| %>
-        <% if comment.id.present? %>
-          <div class="comment border mb-1">
-          <div class="comment-author">
-              <% if comment.user.user_profile.avatar.attached? %>
-                <%= image_tag comment.user.user_profile.avatar, class: "img-fluid", width: 30, height: 30 %>
-              <% else %>
-                <%= adorable_avatar(comment.user.email, 30) %>
-              <% end %>
-              <% if comment.user.username.present? %>
-                <%= link_to comment.user.username, user_path(comment.user) %>
-              <% else %>
-                <%= link_to comment.user.email, user_path(comment.user) %>
-              <% end %>
-              <%= comment.created_at %>
-            </div>
-            <div class="comment-body">
-              <%= comment.body %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
     </div>
   </div>
 </div>
