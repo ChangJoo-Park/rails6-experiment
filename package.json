@@ -1,6 +1,9 @@
 {
   "name": "rails6_experimental",
   "private": true,
+  "scripts": {
+    "analysis": "NODE_ENV=production bin/webpack"
+  },
   "dependencies": {
     "@rails/actioncable": "^6.0.0-alpha",
     "@rails/actiontext": "^6.0.0-rc1",
@@ -13,7 +16,8 @@
     "stimulus": "^1.1.1",
     "trix": "^1.0.0",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.30.0"
+    "webpack": "^4.30.0",
+    "webpack-bundle-analyzer": "^3.3.2"
   },
   "version": "0.1.0",
   "devDependencies": {
