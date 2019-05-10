@@ -15,7 +15,7 @@
             <%= link_to @post.user.username, user_path(@post.user) %>
           </div>
           <% if @post.published? %>
-            Published at <%= @post.published_at %>
+            <%= l @post.published_at, format: :long %>
           <% end %>
 
           <div>
