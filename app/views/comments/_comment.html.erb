@@ -11,7 +11,7 @@
       <% else %>
         <%= link_to comment.user.email, user_path(comment.user) %>
       <% end %>
-      <%= comment.created_at %>
+      <%= l comment.created_at, format: :long %>
     </div>
 
     <div class="comment-body">
