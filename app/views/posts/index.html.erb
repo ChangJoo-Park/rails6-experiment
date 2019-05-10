@@ -49,6 +49,19 @@
           <a href="#">첫번째 후원을 해주세요</a>
         </div>
       </div>
+      <!-- Key links  -->
+      <div class="my-3 border p-3">
+        <ul class="list-unstyled list-inline mb-0">
+          <li class="list-inline-item"><%= link_to  "소개", about_path, class: "text-dark" %></li>
+          <li class="list-inline-item"><%= link_to  "스폰서", sponsors_path, class: "text-dark" %></li>
+          <li class="list-inline-item">스토어</li>
+          <li class="list-inline-item"><%= link_to  "이용약관", terms_path, class: "text-dark" %></li>
+          <li class="list-inline-item"><%= link_to  "개인정보", privacy_path, class: "text-dark" %></li>
+          <li class="list-inline-item"><%= link_to  "문의하기", contact_path, class: "text-dark" %></li>
+          <li class="list-inline-item"><%= link_to  "자주묻는질문", faq_path, class: "text-dark" %></li>
+          <li class="list-inline-item"><%= link_to  "행동강령", code_of_conduct_path, class: "text-dark" %></li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="col">
@@ -70,19 +83,6 @@
       <% if @posts.next_page %>
         <button id="load-more-post" class="btn btn-block btn-primary" data-action="click->posts#loadMore">더 보기</button>
       <% end %>
-      <!-- Key links  -->
-      <div class="my-3 border p-3">
-        <ul class="list-unstyled list-inline mb-0">
-          <li class="list-inline-item"><%= link_to  "소개", about_path, class: "text-dark" %></li>
-          <li class="list-inline-item"><%= link_to  "스폰서", sponsors_path, class: "text-dark" %></li>
-          <li class="list-inline-item">스토어</li>
-          <li class="list-inline-item"><%= link_to  "이용약관", terms_path, class: "text-dark" %></li>
-          <li class="list-inline-item"><%= link_to  "개인정보", privacy_path, class: "text-dark" %></li>
-          <li class="list-inline-item"><%= link_to  "문의하기", contact_path, class: "text-dark" %></li>
-          <li class="list-inline-item"><%= link_to  "자주묻는질문", faq_path, class: "text-dark" %></li>
-          <li class="list-inline-item"><%= link_to  "행동강령", code_of_conduct_path, class: "text-dark" %></li>
-        </ul>
-      </div>
     </div>
     <br>
   </div>
