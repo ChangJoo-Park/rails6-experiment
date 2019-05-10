@@ -1,0 +1,23 @@
+<div class="user-show-details">
+  <div class="user-show-details-avatar">
+    <% if @user.user_profile.avatar.attached? %>
+      <%= image_tag @user.avatar(256), class: "img-fluid" %>
+    <% else %>
+      <%= adorable_avatar(@user.email, 200) %>
+    <% end %>
+  </div>
+  <div class="user-show-details-meta py-2 px-1 border">
+    <h4><%= @user.username %></h4>
+    <h6><%= @user.user_profile.name %></h6>
+    <p class="font-weight-light"><%= mail_to @user.email, @user.email, class: "text-dark" %></p>
+    <p class="font-weight-light"><%= link_to @user.user_profile.website, @user.user_profile.website, class: "text-dark" %></p>
+    <p class="font-weight-light"><%= @user.user_profile.location %></p>
+    <p class="font-weight-light font-italic"><%= @user.user_profile.bio %></p>
+    <p class="font-weight-light"><%= l @user.created_at %> 시작</p>
+  </div>
+  <% unless @same_user %>
+    <%# TODO: Add following user %>
+    <button class="btn btn-block btn-dark">팔로우</button>
+    <button class="btn btn-block btn-light">언팔로우</button>
+  <% end %>
+</div>
