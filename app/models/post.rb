@@ -30,6 +30,14 @@ class Post < ApplicationRecord
     where(user: user).except(:content)
   end
 
+  def self.draft_by_user(user)
+    with_attached_cover
+      .includes(:tags)
+      .except(:content)
+      .where(user: user, published: false)
+      .order(created_at: :desc)
+  end
+
   def self.published_by_user(user)
     with_attached_cover
       .includes(:tags)

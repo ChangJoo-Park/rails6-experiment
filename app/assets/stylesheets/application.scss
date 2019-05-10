@@ -101,10 +101,6 @@ body {
     padding: 1rem;
     margin-bottom: 1rem;
     align-content: center;
-
-    .user-show-details-avatar {
-      margin-right: 1rem;
-    }
   }
 }
 
@@ -137,10 +133,6 @@ trix-editor {
 // User show
 .user-show-details {
   margin-bottom: 1rem;
-  display: flex;
-  .user-show-details-avatar {
-    margin-right: 1rem;
-  }
   .user-show-details-meta {
     margin-right: 1rem;
   }

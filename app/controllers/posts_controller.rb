@@ -10,10 +10,10 @@ class PostsController < ApplicationController
   def index
     @has_tag = params[:tag].present?
     if @has_tag
-      @posts = Post.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 10)
+      @posts = Post.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 6)
       @title = "태그: #{params[:tag]}"
     else
-      @posts = Post.feeds.paginate(page: params[:page], per_page: 10)
+      @posts = Post.feeds.paginate(page: params[:page], per_page: 6)
       @title = "Posts"
     end
     @tags = Tag.all.limit(10)

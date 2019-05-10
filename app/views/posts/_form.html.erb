@@ -1,15 +1,6 @@
 <%= form_with(model: post, local: true, html: { autocomplete: "off" }) do |form| %>
   <div class="form-group d-flex justify-content-end">
-    <div class="btn-group">
-      <%= form.submit "저장하기", class: "btn btn-outline-dark" %>
-      <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <span class="sr-only">Toggle Dropdown</span>
-      </button>
-      <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-        <a class="dropdown-item" href="#">저장과 동시에 발행</a>
-        <a class="dropdown-item" href="#">저장만</a>
-      </div>
-    </div>
+    <%= form.submit "저장하기", class: "btn btn-outline-dark" %>
   </div>
 
   <% if post.errors.any? %>
