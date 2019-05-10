@@ -6,7 +6,7 @@ function appendHtml(el, str) {
   }
 }
 
-appendHtml(document.querySelector('.posts'), '<%= escape_javascript(render(partial: "components/post_list_item", collection: @posts, as: :post, locals: { has_user: true })) %>')
+appendHtml(document.querySelector('.posts'), '<%= escape_javascript(render(partial: "posts/post", collection: @posts, as: :post, locals: { has_user: true })) %>')
 
 <% if (@posts.next_page) %>
   document.querySelector('#paginate-load-more-button').innerHTML = '<%= j will_paginate @posts %>'

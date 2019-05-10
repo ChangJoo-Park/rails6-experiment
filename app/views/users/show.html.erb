@@ -5,16 +5,16 @@
         <div class="user-show-details">
           <div class="user-show-details-avatar">
             <% if @user.user_profile.avatar.attached? %>
-              <%= image_tag @user.avatar(256), class: "rounded img-fluid" %>
+              <%= image_tag @user.avatar(256), class: "img-fluid" %>
             <% else %>
               <%= adorable_avatar(@user.email, 200) %>
             <% end %>
           </div>
-          <div class="user-show-details-meta">
+          <div class="user-show-details-meta py-2 px-1 border">
             <h4><%= @user.username %></h4>
             <h6><%= @user.user_profile.name %></h6>
             <p class="font-weight-light font-italic"><%= @user.user_profile.bio %></p>
-            <p class="font-weight-light"><%= @user.created_at %> 가입함</p>
+            <p class="font-weight-light"><%= l @user.created_at %> 시작</p>
             <%# TODO: Using icons below %>
             <p><%= mail_to @user.email %></p>
             <% unless @same_user %>

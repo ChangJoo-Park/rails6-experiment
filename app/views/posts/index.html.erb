@@ -3,10 +3,11 @@
     <div style="position: sticky; top: calc(90px + 1rem);">
       <% if user_signed_in? %>
         <div class="card mb-3">
+          <%= link_to current_user, class: "text-dark text-decoration-none" do %>
           <div class="row no-gutters">
             <div class="col-md-4">
             <!-- TODO: 아바타를 보여줄 수 있도록 해야함 -->
-            <%= image_tag current_user.avatar(100), class: 'rounded mx-auto d-block' %>
+            <%= image_tag current_user.avatar(100), class: 'mx-auto d-block' %>
             </div>
             <div class="col-md-8">
               <div class="card-body">
@@ -14,6 +15,7 @@
               </div>
             </div>
           </div>
+          <% end %>
         </div>
         <!-- Favorites -->
         <div class="mb-3 border p-3">
@@ -71,14 +73,14 @@
       <!-- Key links  -->
       <div class="my-3 border p-3">
         <ul class="list-unstyled list-inline mb-0">
-          <li class="list-inline-item"><%= link_to  "소개", about_path %></li>
-          <li class="list-inline-item"><%= link_to  "스폰서", sponsors_path %></li>
+          <li class="list-inline-item"><%= link_to  "소개", about_path, class: "text-dark" %></li>
+          <li class="list-inline-item"><%= link_to  "스폰서", sponsors_path, class: "text-dark" %></li>
           <li class="list-inline-item">스토어</li>
-          <li class="list-inline-item"><%= link_to  "이용약관", terms_path %></li>
-          <li class="list-inline-item"><%= link_to  "개인정보", privacy_path %></li>
-          <li class="list-inline-item"><%= link_to  "문의하기", contact_path %></li>
-          <li class="list-inline-item"><%= link_to  "자주묻는질문", faq_path %></li>
-          <li class="list-inline-item"><%= link_to  "행동강령", code_of_conduct_path %></li>
+          <li class="list-inline-item"><%= link_to  "이용약관", terms_path, class: "text-dark" %></li>
+          <li class="list-inline-item"><%= link_to  "개인정보", privacy_path, class: "text-dark" %></li>
+          <li class="list-inline-item"><%= link_to  "문의하기", contact_path, class: "text-dark" %></li>
+          <li class="list-inline-item"><%= link_to  "자주묻는질문", faq_path, class: "text-dark" %></li>
+          <li class="list-inline-item"><%= link_to  "행동강령", code_of_conduct_path, class: "text-dark" %></li>
         </ul>
       </div>
     </div>

@@ -8,7 +8,7 @@
       </h3>
       <div class="card-text">
         <div class="mb-2">
-          <%= post.published_at %>
+          <%= l post.published_at, format: :long %>
         </div>
         <div class="mb-2">
           <%= image_tag post.user.avatar(32) %>

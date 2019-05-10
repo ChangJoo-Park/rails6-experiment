@@ -1,12 +1,12 @@
 <div class="row justify-content-center" data-controller="post">
-  <div class="post col-10 mb-5 px-0 pb-5 border" style="max-width: 650px;">
+  <div class="post col-10 mb-5 px-0" style="max-width: 650px;">
     <% if notice.present? %>
       <div class="alert alert-warning"><%= notice %></div>
     <% end %>
     <% if @post.cover.attached? %>
       <%= image_tag @post.cover, class: "img-fluid" %>
     <% end %>
-    <div class="post-details">
+    <div class="post-details border">
       <div class="post-header">
         <h1 class="post-header-title"><%= @post.title %></h1>
         <div class="post-meta">
@@ -43,25 +43,26 @@
       </div>
 
       <hr>
-
-      <div class="author bg-light px-3">
-        <div class="user-show-details-avatar">
-          <%= image_tag @post.user.avatar(160), class: "rounded img-fluid", width: 80, height: 80 %>
+      <%= link_to @post.user do %>
+        <div class="author bg-light">
+          <div class="user-show-details-avatar">
+            <%= image_tag @post.user.avatar(160), class: "rounded img-fluid", width: 80, height: 80 %>
+          </div>
+          <div class="user-show-details-meta">
+            <h4><%= @post.user.username %></h4>
+            <p><%= @post.user.user_profile.bio %></p>
+          </div>
         </div>
-        <div class="user-show-details-meta">
-          <h4><%= @post.user.username %></h4>
-          <p><%= @post.user.user_profile.bio %></p>
-        </div>
-      </div>
+      <% end %>
     </div>
     <hr>
 
-    <div class="post-comments px-3">
+    <div class="post-comments">
       <div data-target="post.commentList">
         <%= render partial: "comments/comment", collection: @post.comments, as: @comment %>
       </div>
 
-      <div class="post-comment-form border">
+      <div class="post-comment-form mt-3 border">
         <strong>댓글남기기</strong>
         <%= form_with(model: [ @post, @post.comments.build ], remote: true, html: { data: { type: "html", action: "ajax:success->post#onPostSuccess ajax:error->post#onPostError" } }) do |form| %>
           <div class="form-group">

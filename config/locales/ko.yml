@@ -33,4 +33,6 @@ en:
   hello: "Hello world"
   time:
     formats:
-      full: "%B %d, %Y"
+      default: "%Y/%m/%d"
+      long: "%Y년 %m월 %d일"
+      short: "%m/%d"
