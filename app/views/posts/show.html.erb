@@ -10,32 +10,34 @@
       <div class="post-header">
         <h1 class="post-header-title"><%= @post.title %></h1>
         <div class="post-meta">
-          <div class="post-meta-author">
+          <%= link_to @post.user, class: "post-meta-author text-dark text-decoration-none" do %>
             <%= image_tag @post.user.avatar(64), class: "rounded", width: 32, height: 32 %>
-            <%= link_to @post.user.username, user_path(@post.user) %>
-          </div>
+            <%= @post.user.username %>
+          <% end %>
           <% if @post.published? %>
             <%= l @post.published_at, format: :long %>
           <% end %>
 
-          <div>
+          <div class="my-3">
             <%= render "components/tag_list", tags: @post.tag_list %>
           </div>
 
-          <% if user_signed_in? %>
-            <% if current_user.id == @post.user.id %>
-              <% if @post.published? %>
-              <%= link_to '발행취소', unpublish_post_path(@post), method: :put %>
+          <div>
+            <% if user_signed_in? %>
+              <% if current_user.id == @post.user.id %>
+                <% if @post.published? %>
+                <%= link_to '발행취소', unpublish_post_path(@post), method: :put %>
+                <% else %>
+                <%= link_to '발행하기', publish_post_path(@post), method: :put %>
+                <% end %>
+              <% end %>
+              <% if current_user.favorited?(@post) %>
+                <%= link_to "저장취소", post_favorite_path(@post.id), method: :delete %>
               <% else %>
-              <%= link_to '발행하기', publish_post_path(@post), method: :put %>
+                <%= link_to "저장하기", post_favorite_path(@post.id), method: :post %>
               <% end %>
             <% end %>
-            <% if current_user.favorited?(@post) %>
-              <%= link_to "저장취소", post_favorite_path(@post.id), method: :delete %>
-            <% else %>
-              <%= link_to "저장하기", post_favorite_path(@post.id), method: :post %>
-            <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
       <div class="post-content p-3">
@@ -43,7 +45,7 @@
       </div>
 
       <hr>
-      <%= link_to @post.user do %>
+      <%= link_to @post.user, class: "text-dark text-decoration-none" do %>
         <div class="author bg-light">
           <div class="user-show-details-avatar">
             <%= image_tag @post.user.avatar(160), class: "rounded img-fluid", width: 80, height: 80 %>

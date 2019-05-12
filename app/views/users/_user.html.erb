@@ -6,7 +6,7 @@
       <%= adorable_avatar(@user.email, 200) %>
     <% end %>
   </div>
-  <div class="user-show-details-meta py-2 px-1 border">
+  <div class="user-show-details-meta py-2 px-1">
     <h4><%= @user.username %></h4>
     <h6><%= @user.user_profile.name %></h6>
     <p class="font-weight-light"><%= mail_to @user.email, @user.email, class: "text-dark" %></p>
