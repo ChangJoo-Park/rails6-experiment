@@ -1,13 +1,19 @@
 <div class="row justify-content-center">
-  <div class="col-6">
+  <div class="col-8 col-xl-8 col-md-12 col-sm-12">
     <div class="row">
-      <div class="col-3">
+      <div class="col-3 col-md-4">
         <%= render @user %>
       </div>
-      <div class="col-9">
-        <ul class="nav nav-pills" style="margin-bottom: 1rem;">
+      <div class="col-9 col-md-8">
+        <ul class="nav nav-pills bg-white" style="margin-bottom: 1rem; position: sticky; top: calc(90px + 1rem);">
           <li class="nav-item">
             <a class="nav-link active" data-toggle="tab" href="#posts">발행글 목록</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#posts">팔로잉 <%= @user.followings.size %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#posts">팔로워 <%= @user.passive_relationships.size %></a>
           </li>
           <% if @same_user %>
             <li class="nav-item">
@@ -21,7 +27,7 @@
             </li>
           <% end %>
         </ul>
-        <div class="tab-content px-5">
+        <div class="tab-content">
           <div class="tab-pane fade show active" id="posts">
             <%= render partial: "components/post_list_item", collection: @posts, as: :post, locals: { has_user: false } %>
           </div>
@@ -68,3 +74,4 @@
     </div>
   </div>
 </div>
+<hr>

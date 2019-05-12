@@ -15,14 +15,19 @@ Rails.application.routes.draw do
       put :unpublish
       patch :unpublish
     end
-
   end
 
   get "tags/:tag", to: "posts#index", as: :tag
 
   resources :users, only: [:show] do
     patch "profile", to: "user_profile#update"
+    resources :followers,  only: [:index]
+    resources :followings, only: [:index]
   end
+
+  # post "relationships", to: "relationships#create"
+  # delete "relationships/:id", to: "relationships#destroy"
+  resources :relationships, only: %i[create destroy]
 
   # Static Pages
   get "about", to: "static_pages#about"

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  validates :username, presence: :true, uniqueness: { case_sensitive: false }
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -10,10 +10,14 @@ class User < ApplicationRecord
 
   # On when production ready
   # has_paper_trail on: [:update :destroy]
+  has_one :user_profile
   has_many :posts
   has_many :comments
-  has_one :user_profile
   has_many :favorites, dependent: :destroy
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
+  has_many :followings, through: :active_relationships, source: :following
+  has_many :followers, through: :passive_relationships, source: :follower
 
   after_create :build_user_profile
 
@@ -40,5 +44,17 @@ class User < ApplicationRecord
 
   def favorited?(post)
     favorites.find_by(post_id: post.id).present?
+  end
+
+  def following?(other_user)
+    active_relationships.find_by(following_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    active_relationships.create!(following_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    active_relationships.find_by(following_id: other_user.id).destroy
   end
 end
