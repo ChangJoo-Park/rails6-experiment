@@ -11,31 +11,7 @@
   </head>
 
   <body data-controller="application">
-    <div class="container-fluid bg-white" style="position: sticky; top: 0; z-index: 1030;">
-      <%# Navbar  %>
-      <header class="blog-header py-3 border-bottom mb-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-          <div class="col-4 pt-1">
-            <%= link_to "NotNull", root_path, class: "blog-header-logo text-dark text-monospace text-decoration-none" %>
-          </div>
-          <div class="col-4 d-flex justify-content-end align-items-center">
-            <a class="text-muted" href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"></circle><path d="M21 21l-5.2-5.2"></path></svg>
-            </a>
-            <%= link_to '글쓰기', new_post_path, class: "btn btn-sm btn-outline-primary" %> &nbsp;
-            <% if user_signed_in? %>
-              <%= link_to current_user, class: "text-decoration-none text-dark" do %>
-                <%= image_tag current_user.avatar(64), class: "rounded", width: 32, height: 32 %>
-                <%= current_user.username %>
-              <% end %>
-            <% else %>
-              <%= link_to "로그인", new_user_session_path, class: "btn btn-sm btn-outline-secondary" %> &nbsp;
-              <%= link_to "회원가입", new_user_registration_path, class: "btn btn-sm btn-outline-secondary" %>
-            <% end %>
-          </div>
-        </div>
-      </header>
-    </div>
+    <%= render 'shared/navbar' %>
 
     <div class="container-fluid">
       <%= yield %>

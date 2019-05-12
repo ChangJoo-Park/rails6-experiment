@@ -19,12 +19,19 @@ Rails.application.routes.draw do
 
   get "tags/:tag", to: "posts#index", as: :tag
 
+  get "/users/:user_id" => redirect('/users/%{user_id}/published')
+
   resources :users, only: [:show] do
     patch "profile", to: "user_profile#update"
-    resources :followers,  only: [:index]
-    resources :followings, only: [:index]
+    # resources :followers,  only: [:index]
+    # resources :followings, only: [:index]
+    get "published", to: "users#published"
+    get "draft", to: "users#draft"
+    get "favorites", to: "users#favorites"
+    get "followers", to: "users#followers"
+    get "followings", to: "users#followings"
+    get "settings", to: "users#settings"
   end
-
   # post "relationships", to: "relationships#create"
   # delete "relationships/:id", to: "relationships#destroy"
   resources :relationships, only: %i[create destroy]

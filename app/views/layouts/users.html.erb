@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NotNull</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'bootstrap' %>
+  </head>
+
+  <body data-controller="application">
+    <%= render 'shared/navbar' %>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-8 col-xl-8 col-md-12 col-sm-12">
+          <div class="row">
+            <div class="col-3 col-md-4">
+              <%= render @user %>
+            </div>
+            <div class="col-9 col-md-8">
+              <nav class="nav">
+                <%= link_to "발행글", user_published_path(@user), class: "nav-link #{current_page?(controller: 'users', action: 'published') ? 'active' : 'text-dark' }" %>
+                <%= link_to "팔로워", user_followers_path(@user), class: "nav-link #{current_page?(controller: 'users', action: 'followers') ? 'active' : 'text-dark' }" %>
+                <%= link_to "팔로잉", user_followings_path(@user), class: "nav-link #{current_page?(controller: 'users', action: 'followings') ? 'active' : 'text-dark' }" %>
+                <% if @same_user %>
+                <%= link_to "드래프트", user_draft_path(@user), class: "nav-link #{current_page?(controller: 'users', action: 'draft') ? 'active' : 'text-dark' }" %>
+                <%= link_to "저장글", user_favorites_path(@user), class: "nav-link #{current_page?(controller: 'users', action: 'favorites') ? 'active' : 'text-dark' }" %>
+                <%= link_to "정보수정", user_settings_path(@user), class: "nav-link #{current_page?(controller: 'users', action: 'settings') ? 'active' : 'text-dark' }" %>
+                <% end %>
+              </nav>
+              <div class="">
+                <%= yield %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </body>
+</html>
