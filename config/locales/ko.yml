@@ -34,5 +34,5 @@ ko:
   time:
     formats:
       default: "%Y/%m/%d"
-      long: "%Y년 %m월 %d일"
+      long: "%Y년 %m월 %d일 %H시%M분"
       short: "%m/%d"
