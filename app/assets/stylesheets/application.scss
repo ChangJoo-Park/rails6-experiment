@@ -127,7 +127,6 @@ body {
 }
 
 trix-editor {
-  min-height: 500px;
 }
 
 // User show
@@ -138,4 +137,9 @@ trix-editor {
 // StaticPages
 .static-page {
 
+}
+
+.form-control:focus {
+  border-color: #bbb;
+  box-shadow: inset 0 1px 1px rgba(187, 187, 187, 0), 0 0 8px rgba(187, 187, 187, 0);
 }
