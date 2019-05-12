@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   layout "users"
 
   before_action :set_user
+  before_action :redirect_when_not_same_user, only: %i[settings draft]
 
   def show
   end
@@ -35,5 +36,9 @@ class UsersController < ApplicationController
   def set_user
     @user = User.includes(:user_profile).find(params[:user_id])
     @same_user = current_user == @user
+  end
+
+  def redirect_when_not_same_user
+    redirect_back(fallback_location: @user) unless @same_user
   end
 end
