@@ -6,14 +6,12 @@ class FavoritesController < ApplicationController
 
   def create
     current_user.favorite(@post)
-
-    render "posts/show"
+    redirect_back(fallback_location: @post)
   end
 
   def destroy
     current_user.unfavorite(@post)
-
-    render "posts/show"
+    redirect_back(fallback_location: @post)
   end
 
   private

@@ -143,3 +143,8 @@ trix-editor {
   border-color: #bbb;
   box-shadow: inset 0 1px 1px rgba(187, 187, 187, 0), 0 0 8px rgba(187, 187, 187, 0);
 }
+
+.sticky {
+  position: sticky;
+  top: calc(90px + 1rem);
+}

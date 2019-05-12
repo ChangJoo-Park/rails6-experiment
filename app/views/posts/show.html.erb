@@ -1,12 +1,12 @@
 <div class="row justify-content-center" data-controller="post">
-  <div class="post col-10 mb-5 px-0" style="max-width: 650px;">
+  <div class="post col-6 mb-5 px-0">
     <% if notice.present? %>
       <div class="alert alert-warning"><%= notice %></div>
     <% end %>
     <% if @post.cover.attached? %>
       <%= image_tag @post.cover, class: "img-fluid" %>
     <% end %>
-    <div class="post-details border">
+    <div class="post-details border bg-white shadow-sm">
       <div class="post-header">
         <h1 class="post-header-title"><%= @post.title %></h1>
         <div class="post-meta">
@@ -28,7 +28,10 @@
                 <% if @post.published? %>
                 <%= link_to '발행취소', unpublish_post_path(@post), method: :put %>
                 <% else %>
-                <%= link_to '발행하기', publish_post_path(@post), method: :put %>
+                <div class="bg-warning p-3">
+                  이 글은 아직 공개되지 않았습니다.
+                  <%= link_to '여기', publish_post_path(@post), method: :put %>를 눌러 공개하세요!
+                </div>
                 <% end %>
               <% end %>
               <% if current_user.favorited?(@post) %>
@@ -47,7 +50,7 @@
       <hr>
       <%= link_to @post.user, class: "text-dark text-decoration-none" do %>
         <div class="author bg-light">
-          <div class="user-show-details-avatar">
+          <div class="user-show-details-avatar mr-3">
             <%= image_tag @post.user.avatar(160), class: "rounded img-fluid", width: 80, height: 80 %>
           </div>
           <div class="user-show-details-meta">
@@ -57,14 +60,13 @@
         </div>
       <% end %>
     </div>
-    <hr>
 
     <div class="post-comments">
       <div data-target="post.commentList">
         <%= render partial: "comments/comment", collection: @post.comments, as: @comment %>
       </div>
-
-      <div class="post-comment-form mt-3 border">
+      <% if @post.published? %>
+      <div class="post-comment-form mt-3 border bg-white">
         <strong>댓글남기기</strong>
         <%= form_with(model: [ @post, @post.comments.build ], remote: true, html: { data: { type: "html", action: "ajax:success->post#onPostSuccess ajax:error->post#onPostError" } }) do |form| %>
           <div class="form-group">
@@ -75,6 +77,17 @@
           </p>
         <% end %>
       </div>
+      <% else %>
+      <div class="bg-warning p-3">
+        이 글은 아직 공개되지 않았습니다.
+        <%= link_to '여기', publish_post_path(@post), method: :put %>를 눌러 공개하세요!
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-2">
+    <div class="sticky">
+      <%= render @user %>
     </div>
   </div>
 </div>

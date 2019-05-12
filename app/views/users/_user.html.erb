@@ -1,4 +1,4 @@
-<div class="user-show-details" style="position: sticky; top: calc(90px + 1rem);">
+<div class="user-show-details d-block" style="position: sticky; top: calc(90px + 1rem);">
   <div class="user-show-details-avatar">
     <% if @user.user_profile.avatar.attached? %>
       <%= image_tag @user.avatar(256), class: "img-fluid" %>
@@ -15,7 +15,7 @@
     <p class="font-weight-light font-italic"><%= @user.user_profile.bio %></p>
     <p class="font-weight-light"><%= l @user.created_at %> 시작</p>
   </div>
-  <% unless @same_user %>
+  <% unless current_user == @user %>
     <% if current_user.following?(@user) %>
       <%= link_to "언팔로우", relationship_path(@user), method: :delete, class: "btn btn-block btn-light" %>
     <% else %>
