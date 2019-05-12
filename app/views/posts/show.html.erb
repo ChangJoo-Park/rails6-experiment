@@ -72,10 +72,10 @@
         <strong>댓글 남기기</strong>
         <%= form_with(model: [ @post, @post.comments.build ], remote: true, html: { data: { type: "html", action: "ajax:success->post#onPostSuccess ajax:error->post#onPostError" } }) do |form| %>
           <div class="form-group">
-            <%= form.text_area :body, class: "form-control text", placeholder: "댓글을 남겨주세요", data: { target: "post.message" } %>
+            <%= form.text_area :body, class: "form-control text", placeholder: "욕설, 비방, 험담을 하지마세요!", data: { target: "post.message" }, size: "30x5" %>
           </div>
-          <p class="text-right">
-            <%= form.submit '남기기', class: "btn btn-primary" %>
+          <p class="text-right p-0 m-0">
+            <%= form.submit "남기기", class: "btn btn-dark" %>
           </p>
         <% end %>
       </div>
