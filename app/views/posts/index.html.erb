@@ -19,11 +19,11 @@
         </div>
         <!-- Favorites -->
         <div class="mb-3 border p-3 bg-white shadow-sm">
-          <div class="text-monospace text-center">저장한 글</div>
+          <div class="text-center text">저장한 글</div>
           <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
             <!-- FIXME: move to controller below -->
             <% if current_user.favorites.includes(:post).order(created_at: :desc).each do |favorite| %>
-              <li><%= link_to  favorite.post.title, favorite.post, class: "text-secondary"%></li>
+              <li class="text-dark"><%= link_to  favorite.post.title, favorite.post, class: "text text-dark" %></li>
             <% end.empty? %>
               좋아하는 글이 없습니다.
             <% end %>
@@ -32,19 +32,19 @@
       <% end %>
 
       <div class="mb-3 border p-3 bg-white shadow-sm">
-        <div class="text-monospace text-center">
+        <div class="text-center text">
           태그
         </div>
 
         <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
         <% @tags.each do |tag| %>
-          <li><%= link_to "##{tag.name}", tag_path(tag.name.strip), class: "text-monospace text-secondary" %></li>
+          <li><%= link_to "##{tag.name}", tag_path(tag.name.strip), class: "text-monospace text-dark" %></li>
         <% end %>
         </ul>
       </div>
 
       <div class="mb-3 border p-3 bg-white shadow-sm">
-        <div class="text-monospace text-center">커뮤니티 스폰서</div>
+        <div class="text-center text">커뮤니티 스폰서</div>
         <div class="text-center">
           <%= link_to "첫번째 후원을 해주세요", sponsors_path %>
         </div>

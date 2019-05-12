@@ -13,9 +13,16 @@
  *= require_tree .
  *= require_self
  */
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+@import url(https://cdn.rawgit.com/kattergil/NotoSerifKR-Web/76eb9ebf/stylesheet/NotoSerif-Web.css);
+
+.text {
+  font-family: 'Noto Serif KR', serif;
+}
 
 body {
-  font-family: "Apple SD Gothic Neo", "Malgun Gothic", 'Nanum Gothic', sans-serif;
+  font-family: 'Noto Sans KR', "Apple SD Gothic Neo", "Malgun Gothic", 'Nanum Gothic', sans-serif;
+  font-display: swap;
   box-sizing: border-box;
 }
 
