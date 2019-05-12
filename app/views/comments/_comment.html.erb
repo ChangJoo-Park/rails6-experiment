@@ -2,15 +2,11 @@
 <div class="comment border mb-3 bg-white shadow-sm <%= 'mine' if current_user.present? && current_user.id == comment.user.id %>">
   <div class="comment-author">
       <% if comment.user.user_profile.avatar.attached? %>
-        <%= image_tag comment.user.user_profile.avatar, class: "img-fluid", width: 30, height: 30 %>
+        <%= image_tag comment.user.user_profile.avatar, class: "img-fluid rounded", width: 30, height: 30 %>
       <% else %>
         <%= adorable_avatar(comment.user.email, 30) %>
       <% end %>
-      <% if comment.user.username.present? %>
-        <%= link_to comment.user.username, user_path(comment.user) %>
-      <% else %>
-        <%= link_to comment.user.email, user_path(comment.user) %>
-      <% end %>
+      <%= link_to comment.user.username, user_path(comment.user), class: "text-dark" %>
       <%= l comment.created_at, format: :long %>
     </div>
 

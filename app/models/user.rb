@@ -28,6 +28,7 @@ class User < ApplicationRecord
       "https://api.adorable.io/avatars/#{size}/#{email}"
     end
   end
+
   def build_user_profile
     self.user_profile = UserProfile.new(user: self)
     user_profile.save
