@@ -19,7 +19,7 @@
         </div>
         <!-- Favorites -->
         <div class="mb-3 border p-3 bg-white shadow-sm">
-          <div class="text-monospace text-center">Favorites</div>
+          <div class="text-monospace text-center">저장한 글</div>
           <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
             <!-- FIXME: move to controller below -->
             <% if current_user.favorites.includes(:post).order(created_at: :desc).each do |favorite| %>
@@ -33,7 +33,7 @@
 
       <div class="mb-3 border p-3 bg-white shadow-sm">
         <div class="text-monospace text-center">
-          Tags
+          태그
         </div>
 
         <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
