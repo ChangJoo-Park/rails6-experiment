@@ -4,7 +4,7 @@
   </div>
   <ul class="list-unstyled">
     <% Post.tagged_with_limit(tag).each do |post| %>
-      <li><%= link_to post.title, post %></li>
+      <li class="text"><%= link_to post.title, post, class: "text-dark" %></li>
     <% end.empty? and begin %>
       <div class="text-center">첫번째 글을 써보세요!</div>
     <% end %>
