@@ -21,8 +21,9 @@
       <div>
         <%= render "components/tag_list", tags: post.tag_list %>
       </div>
-      <div>
-        댓글 : <%= post.comments.size %>
+      <div class="text-dark text-right">
+       <%= fa_icon "comments-o" %> <%= post.comments.size %> &nbsp;
+       <%= fa_icon "bookmark" %> <%= post.favorites_count %>
       </div>
     </div>
     <% end %>
