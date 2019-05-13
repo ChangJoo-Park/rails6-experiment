@@ -28,7 +28,7 @@
                 <% if @post.published? %>
                 <%= link_to '발행취소', unpublish_post_path(@post), method: :put, class: "icon mr-2" %>
                 <% else %>
-                <div class="bg-warning p-3">
+                <div class="bg-warning p-3 text-left">
                   이 글은 아직 공개되지 않았습니다.
                   <%= link_to '여기', publish_post_path(@post), method: :put %>를 눌러 공개하세요!
                 </div>

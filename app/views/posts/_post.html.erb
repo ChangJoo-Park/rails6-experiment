@@ -1,4 +1,4 @@
-<div class="card shadow-sm mb-3">
+<div class="post card shadow-sm mb-3">
   <% if post.cover.present? %>
     <%= link_to post do %>
       <%= image_tag post.cover.variant(resize: "650"), class: "card-img-top", style: "object-fit: contain;" %>
@@ -21,7 +21,7 @@
       <div>
         <%= render "components/tag_list", tags: post.tag_list %>
       </div>
-      <div class="text-dark text-right">
+      <div class="meta text-dark text-right">
        <%= fa_icon "comments-o" %> <%= post.comments.size %> &nbsp;
        <%= fa_icon "bookmark" %> <%= post.favorites_count %>
       </div>
