@@ -4,35 +4,26 @@
       <% if user_signed_in? %>
         <div class="card mb-3 shadow-sm">
           <%= link_to current_user, class: "text-dark text-decoration-none" do %>
-          <div class="row no-gutters">
-            <div class="col-md-4">
-            <!-- TODO: 아바타를 보여줄 수 있도록 해야함 -->
-            <%= image_tag current_user.avatar(100), class: 'mx-auto d-block' %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title"><%= current_user.username %></h5>
-              </div>
-            </div>
-          </div>
+            <%= image_tag current_user.avatar(128), width: 64, height: 64, class: "rounded" %>
+            <%= current_user.username %>
           <% end %>
         </div>
         <!-- Favorites -->
         <div class="mb-3 border p-3 bg-white shadow-sm">
-          <div class="text-center text">저장한 글</div>
+          <div class="text-center">저장한 글</div>
           <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
             <!-- FIXME: move to controller below -->
             <% if current_user.favorites.includes(:post).order(created_at: :desc).each do |favorite| %>
               <li class="text-dark"><%= link_to  favorite.post.title, favorite.post, class: "text text-dark" %></li>
             <% end.empty? %>
-              <div class="text-center text">저장한 글이 없습니다.</div>
+              <div class="text-center">저장한 글이 없습니다.</div>
             <% end %>
           </ul>
         </div>
       <% end %>
 
       <div class="mb-3 border p-3 bg-white shadow-sm">
-        <div class="text-center text">
+        <div class="text-center">
           태그
         </div>
 
@@ -75,13 +66,13 @@
       style="max-width: 650px;"
     >
       <div class="posts">
-        <%= render @posts %>
+        <%= render @posts, cached: true %>
       </div>
       <div id="paginate-load-more-button" style="display: none;">
         <%= will_paginate %>
       </div>
       <% if @posts.next_page %>
-        <button id="load-more-post" class="btn btn-block btn-primary" data-action="click->posts#loadMore">더 보기</button>
+        <button id="load-more-post" class="btn btn-block btn-primary my-5" data-action="click->posts#loadMore">더 보기</button>
       <% end %>
     </div>
     <br>
@@ -93,8 +84,12 @@
         <div class="text-monospace">
           #help
         </div>
-        <ul>
-          <li>test</li>
+        <ul class="list-unstyled">
+          <% Post.tagged_with("help").limit(5).each do |post| %>
+            <li><%= link_to post.title, post %></li>
+          <% end.empty? and begin %>
+            <div class="text-center">첫번째 글을 써보세요!</div>
+          <% end %>
         </ul>
         <div class="text-center">
           <%= link_to  "글쓰기", new_post_path(@post, tag: "help"), class: "btn btn-sm btn-outline-dark px-5" %>
@@ -104,8 +99,12 @@
         <div class="text-monospace">
           #discuss
         </div>
-        <ul>
-          <li>test</li>
+        <ul class="list-unstyled">
+          <% Post.tagged_with("discuss").limit(5).each do |post| %>
+            <li><%= link_to post.title, post %></li>
+          <% end.empty? and begin %>
+            <div class="text-center">첫번째 글을 써보세요!</div>
+          <% end %>
         </ul>
         <div class="text-center">
           <%= link_to  "글쓰기", new_post_path(@post, tag: "discuss"), class: "btn btn-sm btn-outline-dark px-5" %>
@@ -115,8 +114,12 @@
         <div class="text-monospace">
           #ama
         </div>
-        <ul>
-          <li>test</li>
+        <ul class="list-unstyled">
+          <% Post.tagged_with("ama").limit(5).each do |post| %>
+            <li><%= link_to post.title, post %></li>
+          <% end.empty? and begin %>
+            <div class="text-center">첫번째 글을 써보세요!</div>
+          <% end %>
         </ul>
         <div class="text-center">
           <%= link_to  "글쓰기", new_post_path(@post, tag: "ama"), class: "btn btn-sm btn-outline-dark px-5" %>
