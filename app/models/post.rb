@@ -48,7 +48,7 @@ class Post < ApplicationRecord
 
   def self.tagged_with(name)
     Tag
-      .find_by!(name: name)
+      .find_by(name: name)
       .posts
       .includes([:tags, :cover_attachment, user: [user_profile: :avatar_attachment]])
       .where(published: true)
