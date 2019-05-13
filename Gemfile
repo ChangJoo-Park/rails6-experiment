@@ -63,3 +63,4 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "devise"
 gem "paper_trail"
 gem 'will_paginate', '~> 3.1.0'
+gem "font-awesome-rails"

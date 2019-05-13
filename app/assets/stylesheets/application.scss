@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require font-awesome
  *= require_tree .
  *= require_self
  */
@@ -98,6 +99,7 @@ body {
   .post-content {
     margin-top: 1rem;
     margin-bottom: 2rem;
+    font-size: 1.2rem;
     div {
       line-height: 1.8;
     }
@@ -151,4 +153,9 @@ body {
 .sticky {
   position: sticky;
   top: calc(90px + 1rem);
+}
+
+.post-details .icon {
+  font-size: 2rem;
+  color: #343a40 !important;
 }
