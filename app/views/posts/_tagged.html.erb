@@ -1,0 +1,15 @@
+<div class="mb-3 p-3 border bg-white shadow-sm">
+  <div class="text-monospace">
+    #<%= tag %>
+  </div>
+  <ul class="list-unstyled">
+    <% Post.tagged_with_limit(tag).each do |post| %>
+      <li><%= link_to post.title, post %></li>
+    <% end.empty? and begin %>
+      <div class="text-center">첫번째 글을 써보세요!</div>
+    <% end %>
+  </ul>
+  <div class="text-center">
+    <%= link_to  "글쓰기", new_post_path(@post, tag: tag), class: "btn btn-sm btn-outline-dark px-5" %>
+  </div>
+</div>

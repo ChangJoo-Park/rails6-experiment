@@ -46,6 +46,14 @@ class Post < ApplicationRecord
       .order(created_at: :desc)
   end
 
+  def self.tagged_with_limit(name, limit = 5)
+    Post
+      .includes(:tags)
+      .where(published: true, tags: { name: name })
+      .order(published_at: :desc)
+      .limit(limit)
+  end
+
   def self.tagged_with(name)
     Tag
       .find_by(name: name)

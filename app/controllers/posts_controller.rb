@@ -14,7 +14,7 @@ class PostsController < ApplicationController
       @title = "태그: #{params[:tag]}"
     else
       @posts = Post.feeds.paginate(page: params[:page], per_page: 6)
-      @title = "Posts"
+      @title = "글목록"
     end
     @tags = Tag.all.limit(10)
 

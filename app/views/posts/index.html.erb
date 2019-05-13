@@ -79,52 +79,9 @@
   </div>
   <%# Large 스크린 이상에서만 노출 %>
   <div class="d-none d-xl-block col-xl-2">
-    <div style="position: sticky; top: calc(90px + 1rem);">
-      <div class="mb-3 p-3 border bg-white shadow-sm">
-        <div class="text-monospace">
-          #help
-        </div>
-        <ul class="list-unstyled">
-          <% Post.tagged_with("help").limit(5).each do |post| %>
-            <li><%= link_to post.title, post %></li>
-          <% end.empty? and begin %>
-            <div class="text-center">첫번째 글을 써보세요!</div>
-          <% end %>
-        </ul>
-        <div class="text-center">
-          <%= link_to  "글쓰기", new_post_path(@post, tag: "help"), class: "btn btn-sm btn-outline-dark px-5" %>
-        </div>
-      </div>
-      <div class="mb-3 p-3 border bg-white shadow-sm">
-        <div class="text-monospace">
-          #discuss
-        </div>
-        <ul class="list-unstyled">
-          <% Post.tagged_with("discuss").limit(5).each do |post| %>
-            <li><%= link_to post.title, post %></li>
-          <% end.empty? and begin %>
-            <div class="text-center">첫번째 글을 써보세요!</div>
-          <% end %>
-        </ul>
-        <div class="text-center">
-          <%= link_to  "글쓰기", new_post_path(@post, tag: "discuss"), class: "btn btn-sm btn-outline-dark px-5" %>
-        </div>
-      </div>
-      <div class="mb-3 p-3 border bg-white shadow-sm">
-        <div class="text-monospace">
-          #ama
-        </div>
-        <ul class="list-unstyled">
-          <% Post.tagged_with("ama").limit(5).each do |post| %>
-            <li><%= link_to post.title, post %></li>
-          <% end.empty? and begin %>
-            <div class="text-center">첫번째 글을 써보세요!</div>
-          <% end %>
-        </ul>
-        <div class="text-center">
-          <%= link_to  "글쓰기", new_post_path(@post, tag: "ama"), class: "btn btn-sm btn-outline-dark px-5" %>
-        </div>
-      </div>
-    </div>
+    <%= render "tagged", tag: "help" %>
+    <%= render "tagged", tag: "discuss" %>
+    <%= render "tagged", tag: "ama" %>
+    <%= render "tagged", tag: "question" %>
   </div>
 </div>
