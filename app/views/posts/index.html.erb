@@ -8,13 +8,12 @@
             <%= current_user.username %>
           <% end %>
         </div>
-        <!-- Favorites -->
         <div class="mb-3 border p-3 bg-white shadow-sm">
           <div class="text-center">저장한 글</div>
           <ul class="list-unstyled overflow-auto" style="max-height: 320px;">
             <!-- FIXME: move to controller below -->
             <% if current_user.favorites.includes(:post).order(created_at: :desc).each do |favorite| %>
-              <li class="text-dark"><%= link_to  favorite.post.title, favorite.post, class: "text text-dark" %></li>
+              <li class="text-dark"><%= link_to  favorite.post.title.truncate(15), favorite.post, class: "text text-dark" %></li>
             <% end.empty? %>
               <div class="text-center">저장한 글이 없습니다.</div>
             <% end %>
