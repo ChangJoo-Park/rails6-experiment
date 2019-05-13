@@ -13,9 +13,5 @@ export default class extends Controller {
   static targets = [ "output" ]
 
   connect() {
-    console.log('connected')
-    $('#myModal').on('shown.bs.modal', function () {
-      $('#myInput').trigger('focus')
-    })
   }
 }
