@@ -10,18 +10,9 @@
     </div>
     <div class="post-author">
       <% if has_user %>
-        <%= link_to user_path(post.user) do %>
-        <% if post.user.user_profile.avatar.attached? %>
-          <%= image_tag post.user.user_profile.avatar.variant(resize: "32"), class: "img-fluid" %>
-        <% else %>
-          <%= adorable_avatar(post.user.email, 32) %>
-        <% end %>
-
-        <% if post.user.username.present? %>
-          <%= post.user.username %>
-        <% else %>
-          <%= post.user.email %>
-        <% end %>
+        <%= link_to post.user, class: "text-dark" do %>
+          <%= image_tag post.user.avatar(32), class: "img-fluid rounded" %>
+          <%= post.user.username %>&nbsp;
         <% end %>
       <% end %>
     </div>
