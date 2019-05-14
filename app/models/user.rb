@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :favorites, dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: :post
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
   has_many :followings, through: :active_relationships, source: :following
@@ -34,6 +35,9 @@ class User < ApplicationRecord
     user_profile.save
   end
 
+  def favorites_post_only_published
+    favorite_posts.where(published: true)
+  end
   def favorite(post)
     favorites.find_or_create_by(post: post)
   end
