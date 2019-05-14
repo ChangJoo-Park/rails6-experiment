@@ -3,7 +3,7 @@
     <div style="position: sticky; top: calc(90px + 1rem);">
       <% if user_signed_in? %>
         <div class="card mb-3 shadow-sm">
-          <%= link_to current_user, class: "text-dark text-decoration-none" do %>
+          <%= link_to user_published_path(current_user), class: "text-dark text-decoration-none" do %>
             <%= image_tag current_user.avatar(128), width: 64, height: 64, class: "rounded" %>
             <%= current_user.username %>
           <% end %>
