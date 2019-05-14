@@ -1,12 +1,12 @@
-<div class="post-preview bg-white shadow-sm">
+<div class="post-list-item border bg-white mb-3 shadow-sm">
   <% if post.cover.attached? %>
     <%= link_to post do %>
       <%= image_tag post.cover.variant(resize: "600"), class: "img-fluid", style: "width: 100%;" %>
     <% end %>
   <% end %>
-  <div class="post-details">
-    <div class="post-title">
-      <%= link_to post.title, post %>
+  <div class="post-details p-3">
+    <div class="post-title text">
+      <%= link_to post.title, post, class: "text-dark" %>
     </div>
     <div class="post-author">
       <% if has_user %>
@@ -30,7 +30,15 @@
         <%= render "components/tag_list", tags: post.tag_list %>
       </div>
       <div>
-        <%= post.published_at %>
+        <% if post.published? %>
+          <%= l post.published_at, format: :long %> 공개됨
+        <% else %>
+          <span class="badge badge-pill badge-secondary">비공개</span>
+        <% end %>
+      </div>
+      <div class="meta text-dark text-right">
+        <%= fa_icon "comments-o" %> <%= post.comments.size %> &nbsp;
+        <%= fa_icon "bookmark" %> <%= post.favorites_count %>
       </div>
     </div>
   </div>
