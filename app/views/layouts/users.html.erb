@@ -20,7 +20,7 @@
               <%= render @user %>
             </div>
             <div class="col-9 col-md-8">
-              <nav class="nav">
+              <nav class="nav mb-3">
                 <%= link_to "발행글", user_published_path(@user), class: "nav-link #{current_page?(controller: 'users', action: 'published') ? 'active' : 'text-dark' }" %>
                 <%= link_to "팔로워", user_followers_path(@user), class: "nav-link #{current_page?(controller: 'users', action: 'followers') ? 'active' : 'text-dark' }" %>
                 <%= link_to "팔로잉", user_followings_path(@user), class: "nav-link #{current_page?(controller: 'users', action: 'followings') ? 'active' : 'text-dark' }" %>

@@ -17,9 +17,9 @@
   </div>
   <% if user_signed_in? and current_user != @user %>
     <% if current_user.following?(@user) %>
-      <%= link_to "언팔로우", relationship_path(@user), method: :delete, class: "btn btn-block btn-light" %>
+      <%= link_to "언팔로우", relationship_path(@user), method: :delete, class: "btn btn-warning" %>
     <% else %>
-      <%= button_to "팔로우", relationships_path({ user: @user.id }), method: :post, class: "btn btn-block btn-dark" %>
+      <%= button_to "팔로우", relationships_path({ user: @user.id }), method: :post, class: "btn btn-dark" %>
     <% end %>
   <% end %>
 </div>

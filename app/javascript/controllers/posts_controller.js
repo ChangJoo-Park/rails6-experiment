@@ -26,7 +26,6 @@ export default class extends Controller {
       url: `posts${more_posts_url}`,
       dataType: 'script',
       success: function () {
-        console.log('succeed')
         $('#load-more-post').show()
       },
       error: function () {

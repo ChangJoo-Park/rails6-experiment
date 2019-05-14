@@ -26,7 +26,7 @@
             <% if user_signed_in? %>
               <% if current_user.id == @post.user.id %>
                 <% if @post.published? %>
-                <%= link_to '발행취소', unpublish_post_path(@post), method: :put, class: "icon mr-2" %>
+                <%= link_to '발행취소', unpublish_post_path(@post), method: :put, class: "mr-2 btn btn-sm btn-outline-danger" %>
                 <% else %>
                 <div class="bg-warning p-3 text-left">
                   이 글은 아직 공개되지 않았습니다.
