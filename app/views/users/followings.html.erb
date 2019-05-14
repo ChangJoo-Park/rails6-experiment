@@ -1,6 +1,8 @@
-<div>
-  팔로잉
-  <% @followings.each do |user| %>
-    <%= user.username %>
+<div class="mt-3">
+  <ul class="list-unstyled">
+    <%= render partial: "user_list", collection: @followings, as: :user %>
+  </ul>
+  <% if @followings.empty? %>
+    <h2 class="text-lg">팔로잉하는 사용자가 없습니다.</h2>
   <% end %>
 </div>

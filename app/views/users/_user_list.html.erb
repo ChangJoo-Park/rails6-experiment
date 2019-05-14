@@ -1,0 +1,8 @@
+<li class="mb-3 border flex bg-white">
+  <%= link_to user_published_path(user) do %>
+    <%= image_tag user.avatar(128), width: 64, height: 64, class: "rounded mr-3" %>
+    <span class="text-dark">
+      <%= user.username %>
+    </span>
+  <% end %>
+</li>
